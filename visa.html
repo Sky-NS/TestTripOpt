@@ -105,6 +105,47 @@
             margin-right: 10px;
             margin-bottom: 10px;
         }
+        
+        .quick-nav {
+            background: #f5f2eb;
+            padding: 12px 20px;
+            border-radius: 40px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        .quick-nav a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        .quick-nav a:hover {
+            background-color: #b03e3e;
+            color: white;
+        }
+        
+        .currency-note {
+            background-color: #fff9e6;
+            border-left: 4px solid #f0b400;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        
+        .visa-deadline {
+            background-color: #fee2e2;
+            border-left: 4px solid #dc2626;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -126,6 +167,10 @@
             </ul>
         </div>
 
+        <div class="currency-note" id="currencyNote">
+            <strong>💱 КУРС ВАЛЮТ (расчётный):</strong> <span id="exchangeRatePlaceholder">загрузка...</span>
+        </div>
+
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
             <span style="font-size: 4rem;">🗾</span>
             <div>
@@ -134,13 +179,31 @@
             </div>
         </div>
 
+        <!-- Быстрая навигация -->
+        <div class="quick-nav">
+            <strong style="color: #b03e3e;">📋 Разделы:</strong>
+            <a href="#docs">Документы</a>
+            <a href="#finance">Финансы</a>
+            <a href="#checklist">Чек-лист</a>
+            <a href="#tips">Советы</a>
+        </div>
+
         <span class="badge">🇯🇵 Посольство Японии в РФ</span>
+
+        <!-- Сроки подачи -->
+        <div class="visa-deadline">
+            <strong>⏰ ВАЖНО О СРОКАХ:</strong><br>
+            • Подача документов: <strong>не ранее чем за 3 месяца</strong> до поездки<br>
+            • Оптимально подать: <strong>март – начало апреля 2026</strong><br>
+            • Срок оформления: <strong>5–7 рабочих дней</strong><br>
+            • Консульский сбор: <strong>~3500–5000 ₽</strong> (зависит от срочности)
+        </div>
 
         <div class="warning-block">
             ⚠️ <strong>Внимание:</strong> документы подбираются строго по списку. Не скрепляйте листы степлером или скрепками — просто сложите в порядке, указанном ниже.
         </div>
 
-        <h2>📋 Стандартный пакет</h2>
+        <h2 id="docs">📋 Стандартный пакет</h2>
         <div class="two-columns">
             <div class="visa-card">
                 <h3><span>📄</span> 1–2. Анкеты и согласие</h3>
@@ -164,13 +227,21 @@
                     <li>Страница с регистрацией</li>
                 </ul>
             </div>
+            <div class="visa-card">
+                <h3><span>🌍</span> 5. Загранпаспорт</h3>
+                <ul>
+                    <li>Оригинал загранпаспорта</li>
+                    <li><strong>Срок действия — минимум 6 месяцев после окончания поездки</strong></li>
+                    <li>Должно быть минимум 2 чистые страницы</li>
+                </ul>
+            </div>
         </div>
 
         <h2>💼 Подтверждение занятости</h2>
         <div class="table-wrap">
             <table>
                 <thead>
-                    <tr><th>Категория</th><th>Документы</th></tr>
+                    <tr><th>Категория</th><th>Документы</th> </tr>
                 </thead>
                 <tbody>
                     <tr><td>Трудоустроенный</td><td>Оригинал справки с места работы (должность, оклад, печать)</td></tr>
@@ -183,17 +254,19 @@
             </table>
         </div>
 
-        <h2>💰 Финансовые гарантии</h2>
+        <h2 id="finance">💰 Финансовые гарантии</h2>
         <div class="visa-card" style="background: #fff1f0; border-color: #fecaca;">
             <h3><span>🏦</span> Оригинал справки из отделения банка</h3>
             <p><strong>об остатке денежных средств</strong> — с «мокрой» печатью и подписью сотрудника.</p>
             <p style="margin-top: 0.8rem; background: white; padding: 0.8rem; border-radius: 12px; color: #b91c1c;">❌ Распечатки из личного кабинета, скриншоты и онлайн-выписки <u>не принимаются</u>.</p>
+            <p style="margin-top: 0.8rem;"><strong>💰 Рекомендуемая сумма:</strong> минимум 3000–5000 ₽ в день на человека + стоимость проживания. Для 16 дней ≈ <strong>80 000–100 000 ₽</strong> на человека.</p>
         </div>
 
         <div class="two-columns">
             <div class="visa-card">
                 <h3><span>🔄</span> Многократная виза</h3>
                 <p>✍️ Письмо, объясняющее необходимость многократных посещений Японии.</p>
+                <p><em>Если планируете посещать Японию несколько раз в ближайшие 3 года</em></p>
             </div>
             <div class="visa-card">
                 <h3><span>👶</span> Для несовершеннолетних</h3>
@@ -207,37 +280,82 @@
 
         <h2>📎 Дополнительно</h2>
         <div class="two-columns">
-            <div class="visa-card"><h3>✈️ 7–8. Поездка</h3> Программа пребывания + бронь авиабилетов</div>
+            <div class="visa-card"><h3>✈️ 7–8. Поездка</h3> Программа пребывания + бронь авиабилетов (или отелей)</div>
             <div class="visa-card"><h3>👥 9. Родство</h3> Документы, подтверждающие родство (если едете семьёй)</div>
             <div class="visa-card"><h3>📝 10. Доверенность</h3> При подаче через доверенное лицо</div>
         </div>
 
-        <h2>✅ Чек-лист перед визитом</h2>
+        <h2 id="checklist">✅ Чек-лист перед визитом</h2>
         <div class="checklist">
-            <div class="checklist-item"><input type="checkbox"> Все документы разложены по порядку (1→10)</div>
-            <div class="checklist-item"><input type="checkbox"> Анкеты заполнены, подписи поставлены</div>
-            <div class="checklist-item"><input type="checkbox"> Фотографии свежие, наклеены (если требуется)</div>
-            <div class="checklist-item"><input type="checkbox"> Копия паспорта РФ (развороты) приложена</div>
-            <div class="checklist-item"><input type="checkbox"> Банковская справка — оригинал, с мокрой печатью</div>
-            <div class="checklist-item"><input type="checkbox"> Сделаны копии всего пакета для себя</div>
-            <div class="checklist-item"><input type="checkbox"> Загранпаспорт действует ещё минимум 6 месяцев</div>
+            <div class="checklist-item"><input type="checkbox" class="visa-check"> Все документы разложены по порядку (1→10)</div>
+            <div class="checklist-item"><input type="checkbox" class="visa-check"> Анкеты заполнены, подписи поставлены</div>
+            <div class="checklist-item"><input type="checkbox" class="visa-check"> Фотографии свежие, наклеены (если требуется)</div>
+            <div class="checklist-item"><input type="checkbox" class="visa-check"> Копия паспорта РФ (развороты) приложена</div>
+            <div class="checklist-item"><input type="checkbox" class="visa-check"> Загранпаспорт действует ещё минимум 6 месяцев</div>
+            <div class="checklist-item"><input type="checkbox" class="visa-check"> Банковская справка — оригинал, с мокрой печатью</div>
+            <div class="checklist-item"><input type="checkbox" class="visa-check"> Сделаны копии всего пакета для себя</div>
+            <div class="checklist-item"><input type="checkbox" class="visa-check"> Запись в визовый центр подтверждена</div>
+            <div class="checklist-item"><input type="checkbox" class="visa-check"> Консульский сбор подготовлен</div>
         </div>
 
-        <div class="tip" style="margin-top: 30px;">
-            <h3 style="margin-top: 0; display: flex; gap: 10px;"><span>💡</span> Советы</h3>
+        <div class="tip" id="tips" style="margin-top: 30px;">
+            <h3 style="margin-top: 0; display: flex; gap: 10px;"><span>💡</span> Полезные советы</h3>
             <ul style="columns: 2; list-style-position: inside; color: #0369a1; padding-left: 0;">
-                <li>Запись в визовый центр обязательна</li>
+                <li>Запись в визовый центр обязательна (онлайн)</li>
                 <li>Срок оформления ≈ 5–7 рабочих дней</li>
-                <li>Консульский сбор оплачивается отдельно</li>
                 <li>Фото должно быть матовым, без бликов</li>
                 <li>Наличие авиабилетов — не обязательно, но желательно</li>
+                <li>При подаче на группу — документы каждого заявителя в отдельной папке</li>
+                <li>Все переводы документов (если есть) должны быть заверены</li>
+                <li>Справка 2-НДФЛ часто требуется вместо справки с работы</li>
             </ul>
+        </div>
+
+        <!-- Контактная информация -->
+        <div class="visa-card" style="background-color: #f0f5fa; margin-top: 20px;">
+            <h3 style="margin-top: 0;">📞 Куда обращаться</h3>
+            <p><strong>Визовый центр Японии в Москве:</strong><br>
+            📍 Адрес: Каланчёвская ул., 17, стр. 1 (м. Комсомольская)<br>
+            📞 Телефон: +7 (495) 777-77-77<br>
+            🌐 Сайт: <a href="https://www.japanvisa.ru" target="_blank">www.japanvisa.ru</a><br>
+            🕒 Часы работы: пн–пт 9:00–17:00 (подача), 9:00–16:00 (выдача)</p>
         </div>
 
         <div class="footer">
             <p>🇯🇵 Информация подготовлена на основе требований визового центра Японии (2026)</p>
+            <p style="font-size: 0.9rem;">Перед подачей документов рекомендуется проверить актуальные требования на официальном сайте</p>
         </div>
     </div>
+
     <script src="js/currency.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Сохранение состояния чек-листа в localStorage
+        document.querySelectorAll('.visa-check').forEach(cb => {
+            const key = `visa_checklist_${cb.parentElement.textContent.trim()}`;
+            const saved = localStorage.getItem(key);
+            if (saved === 'true') cb.checked = true;
+            
+            cb.addEventListener('change', () => {
+                localStorage.setItem(key, cb.checked);
+            });
+        });
+        
+        // Подсчёт выполненных пунктов
+        function updateVisaProgress() {
+            const checkboxes = document.querySelectorAll('.visa-check');
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            
+            // Можно добавить индикатор прогресса, если нужно
+            console.log(`Готовность документов: ${checked}/${total}`);
+        }
+        
+        // Обновляем при изменении
+        document.querySelectorAll('.visa-check').forEach(cb => {
+            cb.addEventListener('change', updateVisaProgress);
+        });
+        updateVisaProgress();
+    </script>
 </body>
 </html>
