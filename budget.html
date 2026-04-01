@@ -164,6 +164,8 @@
                 <li><a href="budget.html" class="active">💰 Общий бюджет</a></li>
                 <li><a href="toilet-map.html">🚽 Карта туалетов</a></li>
                 <li><a href="visa.html">🛂 Всё для визы</a></li>
+                <li><a href="contacts.html">📞 Контакты</a></li>
+                <li><a href="glossary.html">📖 Глоссарий</a></li>
             </ul>
         </div>
 
@@ -199,7 +201,7 @@
         <h2 id="daily">📅 Расходы по дням</h2>
         <table class="budget-table" id="budget-table">
             <thead>
-                <tr><th>Дата</th><th>Город</th><th>Описание</th><th>Местная валюта</th><th>Рубли (≈)</th> </tr>
+                <tr><th>Дата</th><th>Город</th><th>Описание</th><th>Местная валюта</th><th>Рубли (≈)</th>  </tr>
             </thead>
             <tbody>
                 <!-- ОСАКА (JPY) -->
@@ -274,26 +276,18 @@
     </div>
 
     <script>
-        // Функция для пересчёта всех цен
         function recalculateAll() {
             const jpyRatePer100 = parseFloat(document.getElementById('jpyRate').value);
             const cnyRate = parseFloat(document.getElementById('cnyRate').value);
-            const jpyRate = jpyRatePer100 / 100; // рубли за 1 JPY
-            
-            // Сохраняем в localStorage
+            const jpyRate = jpyRatePer100 / 100;
+
             localStorage.setItem('userJpyRate', jpyRatePer100);
             localStorage.setItem('userCnyRate', cnyRate);
-            
-            // Обновляем одиночные JPY
+
             document.querySelectorAll('.rub-jpy[data-jpy]').forEach(el => {
                 let jpy = parseFloat(el.getAttribute('data-jpy'));
-                if (!isNaN(jpy)) {
-                    let rub = Math.round(jpy * jpyRate);
-                    el.textContent = `≈ ${rub} ₽`;
-                }
+                if (!isNaN(jpy)) el.textContent = `≈ ${Math.round(jpy * jpyRate)} ₽`;
             });
-            
-            // Обновляем диапазонные JPY
             document.querySelectorAll('.rub-range-jpy[data-min][data-max]').forEach(el => {
                 let minJpy = parseFloat(el.getAttribute('data-min'));
                 let maxJpy = parseFloat(el.getAttribute('data-max'));
@@ -303,17 +297,10 @@
                     el.textContent = `≈ ${minRub}–${maxRub} ₽`;
                 }
             });
-            
-            // Обновляем одиночные CNY
             document.querySelectorAll('.rub-cny[data-cny]').forEach(el => {
                 let cny = parseFloat(el.getAttribute('data-cny'));
-                if (!isNaN(cny)) {
-                    let rub = Math.round(cny * cnyRate);
-                    el.textContent = `≈ ${rub} ₽`;
-                }
+                if (!isNaN(cny)) el.textContent = `≈ ${Math.round(cny * cnyRate)} ₽`;
             });
-            
-            // Обновляем диапазонные CNY
             document.querySelectorAll('.rub-range-cny[data-min][data-max]').forEach(el => {
                 let minCny = parseFloat(el.getAttribute('data-min'));
                 let maxCny = parseFloat(el.getAttribute('data-max'));
@@ -323,14 +310,13 @@
                     el.textContent = `≈ ${minRub}–${maxRub} ₽`;
                 }
             });
-            
-            // Обновляем нижнюю сводную таблицу, считывая из data-атрибутов итоговых строк
+
             const osakaTotal = document.getElementById('osaka-total');
             const fujiTotal = document.getElementById('fuji-total');
             const tokyoTotal = document.getElementById('tokyo-total');
             const shATotal = document.getElementById('shanghai-a-total');
             const shBTotal = document.getElementById('shanghai-b-total');
-            
+
             function getRangeValues(el) {
                 let min = parseFloat(el.getAttribute('data-min'));
                 let max = parseFloat(el.getAttribute('data-max'));
@@ -344,13 +330,13 @@
                 }
                 return { min: 0, max: 0 };
             }
-            
+
             const osaka = getRangeValues(osakaTotal);
             const fuji = getRangeValues(fujiTotal);
             const tokyo = getRangeValues(tokyoTotal);
             const shA = getRangeValues(shATotal);
             const shB = getRangeValues(shBTotal);
-            
+
             document.getElementById('osaka-min').textContent = osaka.min + ' ₽';
             document.getElementById('osaka-max').textContent = osaka.max + ' ₽';
             document.getElementById('fuji-min').textContent = fuji.min + ' ₽';
@@ -361,45 +347,26 @@
             document.getElementById('shanghai-a-max').textContent = shA.max + ' ₽';
             document.getElementById('shanghai-b-min').textContent = shB.min + ' ₽';
             document.getElementById('shanghai-b-max').textContent = shB.max + ' ₽';
-            
+
             document.getElementById('total-a-min').textContent = (osaka.min + fuji.min + tokyo.min + shA.min) + ' ₽';
             document.getElementById('total-a-max').textContent = (osaka.max + fuji.max + tokyo.max + shA.max) + ' ₽';
             document.getElementById('total-b-min').textContent = (osaka.min + fuji.min + tokyo.min + shB.min) + ' ₽';
             document.getElementById('total-b-max').textContent = (osaka.max + fuji.max + tokyo.max + shB.max) + ' ₽';
         }
-        
-        // Восстановление сохранённых курсов из localStorage
+
         function loadSavedRates() {
             const savedJpy = localStorage.getItem('userJpyRate');
             const savedCny = localStorage.getItem('userCnyRate');
             if (savedJpy) document.getElementById('jpyRate').value = savedJpy;
             if (savedCny) document.getElementById('cnyRate').value = savedCny;
         }
-        
-        // Обновление блока с курсом из currency.js
-        function updateRateDisplay() {
-            const rateDisplay = document.getElementById('exchangeRatePlaceholder');
-            if (rateDisplay && window.lastJpyRate && window.lastCnyRate) {
-                rateDisplay.textContent = `1 CNY ≈ ${Math.round(window.lastCnyRate)} RUB | 100 JPY ≈ ${Math.round(100 * window.lastJpyRate)} RUB`;
-            }
-        }
-        
-        // Автоматический пересчёт при загрузке
+
         window.addEventListener('DOMContentLoaded', () => {
             loadSavedRates();
             recalculateAll();
-        });
-        
-        // Слушаем события обновления курсов из currency.js
-        window.addEventListener('ratesUpdated', (e) => {
-            if (e.detail) {
-                window.lastJpyRate = e.detail.jpy;
-                window.lastCnyRate = e.detail.cny;
-                updateRateDisplay();
-            }
         });
     </script>
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
 </body>
-    </html>
+</html>
