@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- PWA -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#b03e3e">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Japan Trip">
-
-<!-- Open Graph / Social Media -->
-<meta property="og:title" content="Пердящее путешествие: Япония + Шанхай">
-<meta property="og:description" content="Полный маршрут на 16 дней для группы из 6 человек">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://placehold.co/1200x630?text=Japan+Trip">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Пердящее путешествие">
-<meta name="twitter:description" content="Маршрут по Японии и Шанхаю">
-
-<!-- Favicon (можно заменить на реальный) -->
-<link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗾</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Пердящее путешествие: Япония + Шанхай</title>
-    <!-- Путь к стилям — папка CSS с большой буквы -->
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#b03e3e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Japan Trip">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Пердящее путешествие: Япония + Шанхай">
+    <meta property="og:description" content="Полный маршрут на 16 дней для группы из 6 человек">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://placehold.co/1200x630?text=Japan+Trip">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Пердящее путешествие">
+    <meta name="twitter:description" content="Маршрут по Японии и Шанхаю">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗾</text></svg>">
+    
+    <!-- Путь к стилям -->
     <link rel="stylesheet" href="CSS/style.css">
     <style>
         /* Дополнительные стили для главной-навигатора */
@@ -108,17 +110,6 @@
             border-bottom: none;
         }
         
-        .pnr-box {
-            background-color: #2d2d2d;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 20px 0 30px;
-            font-family: monospace;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-        
         .hotel-card {
             background-color: #f9f7f4;
             border: 1px solid #efebe5;
@@ -154,15 +145,6 @@
             font-size: 0.95rem;
         }
         
-        /* Стили для навигационных кнопок (старые, больше не используются, оставим на всякий случай) */
-        .nav-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 30px 0 20px;
-        }
-        
         .nav-button {
             background-color: #f5f2eb;
             color: #2d2d2d;
@@ -182,11 +164,43 @@
             border-color: #b03e3e;
             transform: translateY(-2px);
         }
+
+        /* Стиль для прогресс-бара */
+        .progress-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f7f4;
+            border-radius: 12px;
+        }
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .progress-bar-bg {
+            background: #efebe5;
+            border-radius: 20px;
+            height: 8px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            width: 0%;
+            background: #b03e3e;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .progress-text {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #6b5a4a;
+        }
     </style>
 </head>
 <body>
     <div class="trip-card">
-        <!-- Бургер-меню -->
         <div class="burger-menu">
             <input id="menu-toggle" type="checkbox" />
             <label class="menu-btn" for="menu-toggle">
@@ -204,14 +218,28 @@
             </ul>
         </div>
 
-        <!-- Заголовок -->
         <h1>🗾 Пердящее путешествие</h1>
         <div style="text-align: center; font-size: 1.2rem; margin-bottom: 20px; color: #4a4a4a;">
             Японский трип • 11–26 мая 2026
         </div>
 
-        <!-- ===== ВСЕ ПЕРЕЛЁТЫ ===== -->
-        <h2>✈️ Перелёты (ну это не у всех так)</h2>
+        <!-- Прогресс-бар путешествия -->
+        <div class="progress-container">
+            <div class="progress-labels">
+                <span>🗾 11 мая</span>
+                <span>🌆 Осака</span>
+                <span>🗻 Фудзи</span>
+                <span>🗼 Токио</span>
+                <span>🏙 Шанхай</span>
+                <span>✈️ 26 мая</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="trip-progress"></div>
+            </div>
+            <div class="progress-text" id="progress-text"></div>
+        </div>
+
+        <h2>✈️ Перелёты</h2>
         
         <div class="flight-badge">
             <div class="flight-row">
@@ -236,12 +264,10 @@
             </div>
         </div>
 
-        <!-- ===== ГОРОДА (КАРТОЧКИ-ССЫЛКИ) ===== -->
         <h2>🏙 Наши города-базы</h2>
         <p style="color: #6b5a4a; margin-bottom: 20px;">Нажми на город, чтобы увидеть детальный план по дням</p>
         
         <div class="city-grid">
-            <!-- Осака -->
             <a href="osaka.html" class="city-card">
                 <div class="city-icon">🌆</div>
                 <div class="city-name">Осака</div>
@@ -249,15 +275,13 @@
                 <div class="city-tagline">Осака + Киото + Нара + Кобе</div>
             </a>
             
-            <!-- Фудзи (исправлено: добавлено + Хаконе) -->
             <a href="fuji.html" class="city-card">
                 <div class="city-icon">🗻</div>
                 <div class="city-name">Фудзи</div>
                 <div class="city-dates">18–20 мая · 2 ночи</div>
-                <div class="city-tagline"> Фудзикавагутико + Хаконе</div>
+                <div class="city-tagline">Фудзикавагутико + Хаконе</div>
             </a>
             
-            <!-- Токио -->
             <a href="tokyo.html" class="city-card">
                 <div class="city-icon">🗼</div>
                 <div class="city-name">Токио</div>
@@ -265,7 +289,6 @@
                 <div class="city-tagline">Токио + Камакура + Эносима</div>
             </a>
             
-            <!-- Шанхай -->
             <a href="shanghai.html" class="city-card">
                 <div class="city-icon">🏙</div>
                 <div class="city-name">Шанхай</div>
@@ -274,7 +297,6 @@
             </a>
         </div>
 
-        <!-- Пояснение про однодневные поездки -->
         <div class="day-trip-note">
             <strong>🚆 Однодневные поездки (day trips):</strong><br>
             • Из <strong>Осаки</strong> (с возвращением в наш дом): Киото (2 дня), Нара (1 день), Кобе (0.5 дня)<br>
@@ -282,10 +304,8 @@
             • Все детали — на страницах соответствующих городов
         </div>
 
-        <!-- ===== ВСЕ ПРОЖИВАНИЯ ===== -->
         <h2>🏨 Все проживания</h2>
 
-        <!-- Осака -->
         <div class="hotel-card">
             <div class="hotel-name">🌆 Osaka Station 3min Direct Namba — 4BR House</div>
             <div class="hotel-dates">📅 11 мая (заезд 21:00) – 18 мая (выезд 12:00) · 7 ночей</div>
@@ -301,7 +321,6 @@
             </div>
         </div>
 
-        <!-- Фудзи -->
         <div class="hotel-card">
             <div class="hotel-name">🗻 ID Stay Kawaguchiko 🔑🔑🔑</div>
             <div class="hotel-dates">📅 18 мая (заезд 16:00–22:00) – 20 мая (выезд 10:00) · 2 ночи</div>
@@ -312,7 +331,6 @@
             </div>
         </div>
 
-        <!-- Токио -->
         <div class="hotel-card">
             <div class="hotel-name">🗼 Ryan inn 99平米 戸建貸切 JR東十条駅徒歩3分</div>
             <div class="hotel-dates">📅 20 мая (заезд 15:00–22:00) – 25 мая (выезд 10:00) · 5 ночей</div>
@@ -327,7 +345,6 @@
             </div>
         </div>
 
-        <!-- Шанхай -->
         <div class="hotel-card">
             <div class="hotel-name">🏙 Ramada Plaza Shanghai Pudong Airport ⭐⭐⭐⭐</div>
             <div class="hotel-dates">📅 25 мая (заезд после 16:15) – 26 мая (выезд 7:30) · 1 ночь</div>
@@ -342,20 +359,43 @@
             </div>
         </div>
 
-        <!-- ===== ВАЖНЫЕ ЗАМЕТКИ ===== -->
         <div class="tip">
             <strong>📌 ВАЖНО:</strong><br>
             • PNR код для всех рейсов: <strong>PBCRWX</strong> (China Eastern Airlines)<br>
             • Заезд в Осаку: <strong>21:00 11 мая</strong> (согласовано с хозяином)<br>
         </div>
 
-        <!-- Подвал -->
         <div class="footer">
-            <p>Москва → Шанхай → Осака + Киото + Нара + Кобе → Мисима (проездом) + Фудзикавагутико + Хаконе → Токио + Камакура + Эносима → Шанхай → Москва</p>
+            <p>Москва → Шанхай → Осака + Киото + Нара + → Мисима (проездом) + Фудзикавагутико + Хаконе → Токио + Камакура + Эносима → Шанхай → Москва</p>
             <p style="font-size: 0.9rem; color: #8b7a6a;">11–26 мая 2026 · 6 гайдзинов · 11 городов</p>
         </div>
     </div>
+
+    <script>
+        // Прогресс-бар путешествия
+        function updateProgress() {
+            const start = new Date(2026, 4, 11);
+            const end = new Date(2026, 4, 26);
+            const today = new Date();
+            
+            if (today < start) {
+                document.getElementById('trip-progress').style.width = '0%';
+                document.getElementById('progress-text').textContent = '⏳ Путешествие начнётся 11 мая 2026';
+            } else if (today > end) {
+                document.getElementById('trip-progress').style.width = '100%';
+                document.getElementById('progress-text').textContent = '✅ Путешествие завершено! 🎉';
+            } else {
+                const total = end - start;
+                const elapsed = today - start;
+                const percent = (elapsed / total) * 100;
+                document.getElementById('trip-progress').style.width = percent + '%';
+                const daysLeft = Math.ceil((end - today) / (1000 * 60 * 60 * 24));
+                document.getElementById('progress-text').textContent = `📅 До конца путешествия осталось ${daysLeft} дней`;
+            }
+        }
+        updateProgress();
+    </script>
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
 </body>
-  </html>
+    </html>
