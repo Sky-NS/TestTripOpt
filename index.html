@@ -23,13 +23,11 @@
     <meta name="twitter:title" content="Пердящее путешествие">
     <meta name="twitter:description" content="Маршрут по Японии и Шанхаю">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗾</text></svg>">
     
-    <!-- Путь к стилям -->
     <link rel="stylesheet" href="CSS/style.css">
     <style>
-        /* Дополнительные стили для главной-навигатора */
+        /* Стили главной страницы */
         .city-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -80,14 +78,6 @@
             font-size: 0.95rem;
             margin: 10px 0;
             font-style: italic;
-        }
-        
-        .city-address {
-            color: #6b5a4a;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #efebe5;
         }
         
         .flight-badge {
@@ -145,27 +135,6 @@
             font-size: 0.95rem;
         }
         
-        .nav-button {
-            background-color: #f5f2eb;
-            color: #2d2d2d;
-            padding: 12px 20px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
-            border: 1px solid #efebe5;
-            min-width: 120px;
-            text-align: center;
-        }
-        
-        .nav-button:hover {
-            background-color: #b03e3e;
-            color: white;
-            border-color: #b03e3e;
-            transform: translateY(-2px);
-        }
-
-        /* Стиль для прогресс-бара */
         .progress-container {
             margin: 30px 0;
             padding: 20px;
@@ -216,6 +185,7 @@
                 <li><a href="toilet-map.html">🚽 Карта туалетов</a></li>
                 <li><a href="visa.html">🛂 Всё для визы</a></li>
                 <li><a href="contacts.html">📞 Контакты</a></li>
+                <li><a href="glossary.html">📖 Глоссарий</a></li>
             </ul>
         </div>
 
@@ -241,7 +211,6 @@
         </div>
 
         <h2>✈️ Перелёты</h2>
-        
         <div class="flight-badge">
             <div class="flight-row">
                 <span>📅 10 мая 19:05</span>
@@ -273,7 +242,7 @@
                 <div class="city-icon">🌆</div>
                 <div class="city-name">Осака</div>
                 <div class="city-dates">11–18 мая · 7 ночей</div>
-                <div class="city-tagline">Осака + Киото + Нара + Кобе</div>
+                <div class="city-tagline">Осака + Киото + Нара</div>
             </a>
             
             <a href="fuji.html" class="city-card">
@@ -300,7 +269,7 @@
 
         <div class="day-trip-note">
             <strong>🚆 Однодневные поездки (day trips):</strong><br>
-            • Из <strong>Осаки</strong> (с возвращением в наш дом): Киото (2 дня), Нара (1 день), Кобе (0.5 дня)<br>
+            • Из <strong>Осаки</strong> (с возвращением в наш дом): Киото (2 дня), Нара (1 день)<br>
             • Из <strong>Токио</strong> (с возвращением): Камакура + Эносима (один из дней 22–23 мая, по погоде смотрим)<br>
             • Все детали — на страницах соответствующих городов
         </div>
@@ -367,8 +336,8 @@
         </div>
 
         <div class="footer">
-            <p>Москва → Шанхай → Осака + Киото + Нара + → Мисима (проездом) + Фудзикавагутико + Хаконе → Токио + Камакура + Эносима → Шанхай → Москва</p>
-            <p style="font-size: 0.9rem; color: #8b7a6a;">11–26 мая 2026 · 6 гайдзинов · 11 городов</p>
+            <p>Москва → Шанхай → Осака + Киото + Нара → Мисима (проездом) + Фудзикавагутико + Хаконе → Токио + Камакура + Эносима → Шанхай → Москва</p>
+            <p style="font-size: 0.9rem; color: #8b7a6a;">11–26 мая 2026 · 6 гайдзинов · 10 городов</p>
         </div>
     </div>
 
@@ -399,4 +368,4 @@
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
 </body>
-    </html>
+</html>
