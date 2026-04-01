@@ -92,6 +92,31 @@
         .apply-button:hover {
             background-color: #8c2e2e;
         }
+        
+        .quick-nav {
+            background: #f5f2eb;
+            padding: 12px 20px;
+            border-radius: 40px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        .quick-nav a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        .quick-nav a:hover {
+            background-color: #b03e3e;
+            color: white;
+        }
+        
         @media (max-width: 768px) {
             .currency-control {
                 flex-direction: column;
@@ -105,6 +130,21 @@
             .apply-button {
                 width: 100%;
             }
+            .budget-table {
+                font-size: 0.7rem;
+            }
+            .budget-table th, .budget-table td {
+                padding: 6px 8px;
+            }
+        }
+        
+        .currency-note {
+            background-color: #fff9e6;
+            border-left: 4px solid #f0b400;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -130,6 +170,13 @@
         <h1>💰 Общий бюджет путешествия</h1>
         <p style="text-align: center; color: #6b5a4a;">Группа из 6 человек • 11–26 мая 2026</p>
 
+        <!-- Быстрая навигация -->
+        <div class="quick-nav">
+            <strong style="color: #b03e3e;">📊 Перейти к:</strong>
+            <a href="#daily">Расходы по дням</a>
+            <a href="#summary">Общий бюджет</a>
+        </div>
+
         <!-- Панель управления курсами -->
         <div class="currency-control">
             <div class="currency-input">
@@ -145,7 +192,11 @@
             <button class="apply-button" onclick="recalculateAll()">⟳ Пересчитать</button>
         </div>
 
-        <h2>📅 Расходы по дням</h2>
+        <div class="currency-note">
+            <strong>💱 ТЕКУЩИЙ КУРС (расчётный):</strong> <span id="exchangeRatePlaceholder">загрузка...</span>
+        </div>
+
+        <h2 id="daily">📅 Расходы по дням</h2>
         <table class="budget-table" id="budget-table">
             <thead>
                 <tr><th>Дата</th><th>Город</th><th>Описание</th><th>Местная валюта</th><th>Рубли (≈)</th> </tr>
@@ -192,7 +243,7 @@
             </tbody>
         </table>
 
-        <h2>📊 Общий бюджет</h2>
+        <h2 id="summary">📊 Общий бюджет</h2>
         <table class="budget-table">
             <thead><tr><th>Город</th><th>Минимум (руб)</th><th>Максимум (руб)</th></tr></thead>
             <tbody>
@@ -213,7 +264,7 @@
             • В Фудзи включены все запланированные активности.<br>
             • В Токио учтён вариант с Disney (группа А) и Сибуя (группа Б).<br>
             • В Шанхае два сценария в зависимости от погоды.<br>
-            • Вы можете изменить курс валют в верхней панели.
+            • Вы можете изменить курс валют в верхней панели. Курсы сохраняются в браузере.
         </div>
 
         <div class="footer">
@@ -225,8 +276,13 @@
     <script>
         // Функция для пересчёта всех цен
         function recalculateAll() {
-            const jpyRate = parseFloat(document.getElementById('jpyRate').value) / 100; // рубли за 1 JPY
-            const cnyRate = parseFloat(document.getElementById('cnyRate').value); // рубли за 1 CNY
+            const jpyRatePer100 = parseFloat(document.getElementById('jpyRate').value);
+            const cnyRate = parseFloat(document.getElementById('cnyRate').value);
+            const jpyRate = jpyRatePer100 / 100; // рубли за 1 JPY
+            
+            // Сохраняем в localStorage
+            localStorage.setItem('userJpyRate', jpyRatePer100);
+            localStorage.setItem('userCnyRate', cnyRate);
             
             // Обновляем одиночные JPY
             document.querySelectorAll('.rub-jpy[data-jpy]').forEach(el => {
@@ -279,11 +335,9 @@
                 let min = parseFloat(el.getAttribute('data-min'));
                 let max = parseFloat(el.getAttribute('data-max'));
                 if (!isNaN(min) && !isNaN(max)) {
-                    // если элемент с JPY
                     if (el.classList.contains('rub-range-jpy')) {
                         return { min: Math.round(min * jpyRate), max: Math.round(max * jpyRate) };
                     }
-                    // если с CNY
                     if (el.classList.contains('rub-range-cny')) {
                         return { min: Math.round(min * cnyRate), max: Math.round(max * cnyRate) };
                     }
@@ -314,9 +368,38 @@
             document.getElementById('total-b-max').textContent = (osaka.max + fuji.max + tokyo.max + shB.max) + ' ₽';
         }
         
+        // Восстановление сохранённых курсов из localStorage
+        function loadSavedRates() {
+            const savedJpy = localStorage.getItem('userJpyRate');
+            const savedCny = localStorage.getItem('userCnyRate');
+            if (savedJpy) document.getElementById('jpyRate').value = savedJpy;
+            if (savedCny) document.getElementById('cnyRate').value = savedCny;
+        }
+        
+        // Обновление блока с курсом из currency.js
+        function updateRateDisplay() {
+            const rateDisplay = document.getElementById('exchangeRatePlaceholder');
+            if (rateDisplay && window.lastJpyRate && window.lastCnyRate) {
+                rateDisplay.textContent = `1 CNY ≈ ${Math.round(window.lastCnyRate)} RUB | 100 JPY ≈ ${Math.round(100 * window.lastJpyRate)} RUB`;
+            }
+        }
+        
         // Автоматический пересчёт при загрузке
-        window.addEventListener('DOMContentLoaded', recalculateAll);
+        window.addEventListener('DOMContentLoaded', () => {
+            loadSavedRates();
+            recalculateAll();
+        });
+        
+        // Слушаем события обновления курсов из currency.js
+        window.addEventListener('ratesUpdated', (e) => {
+            if (e.detail) {
+                window.lastJpyRate = e.detail.jpy;
+                window.lastCnyRate = e.detail.cny;
+                updateRateDisplay();
+            }
+        });
     </script>
     <script src="js/currency.js"></script>
+    <script src="js/app.js"></script>
 </body>
-</html>
+    </html>
