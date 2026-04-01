@@ -158,21 +158,57 @@
             border-color: #6001D1;
             color: #6001D1;
         }
-
-        .yahoo-maps-note {
-            background: #f0f0f0;
-            border-radius: 16px;
-            padding: 15px;
-            margin: 30px 0;
-            font-size: 0.95rem;
+        
+        .quick-nav {
+            background: #f5f2eb;
+            padding: 12px 20px;
+            border-radius: 40px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
         }
-
+        .quick-nav a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        .quick-nav a:hover {
+            background-color: #b03e3e;
+            color: white;
+        }
+        
+        .checklist-block {
+            background-color: #f0f5fa;
+            border-left: 4px solid #2d7a6e;
+        }
+        .checklist-block ul {
+            columns: 2;
+            margin: 0;
+        }
         @media (max-width: 768px) {
+            .checklist-block ul {
+                columns: 1;
+            }
             .big-action-button {
                 width: 100%;
                 font-size: 1.1rem;
                 padding: 15px 20px;
             }
+        }
+        
+        .currency-note {
+            background-color: #fff9e6;
+            border-left: 4px solid #f0b400;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -195,12 +231,24 @@
             </ul>
         </div>
 
+        <div class="currency-note" id="currencyNote">
+            <strong>💱 КУРС ВАЛЮТ (расчётный):</strong> <span id="exchangeRatePlaceholder">загрузка...</span>
+        </div>
+
         <h1>🚽 Карта туалетов в Японии</h1>
         <p style="color: #4a4a4a; margin-bottom: 30px;">
             Найдите ближайшие общественные туалеты через Google Карты или Yahoo! Карты. Также доступны мобильные приложения.
         </p>
 
-        <div class="geolocation-note">
+        <!-- Быстрая навигация -->
+        <div class="quick-nav">
+            <strong style="color: #b03e3e;">📌 Быстрый переход:</strong>
+            <a href="#maps">Карты</a>
+            <a href="#apps">Приложения</a>
+            <a href="#guide">Гайд</a>
+        </div>
+
+        <div class="geolocation-note" id="maps">
             <strong>📍 Разрешите геолокацию:</strong> при нажатии на кнопку браузер запросит доступ к вашему местоположению. После подтверждения карта покажет туалеты рядом.
         </div>
 
@@ -231,7 +279,7 @@
             </div>
         </div>
 
-        <h2 style="margin-top: 40px;">📱 Мобильные приложения</h2>
+        <h2 id="apps" style="margin-top: 40px;">📱 Мобильные приложения</h2>
         
         <div class="app-grid">
             <div class="app-card">
@@ -281,7 +329,7 @@
             </div>
         </div>
 
-        <div class="info-box">
+        <div class="info-box" id="guide">
             <h3>ℹ️ Как пользоваться туалетами в Японии</h3>
             
             <h4 style="margin-top: 20px;">🚽 Японские унитазы (Washlet):</h4>
@@ -306,6 +354,20 @@
             </ul>
         </div>
 
+        <!-- Чек-лист для туалетного набора -->
+        <div class="tip checklist-block">
+            <strong>🎒 ЧТО ВЗЯТЬ С СОБОЙ ДЛЯ КОМФОРТА:</strong><br><br>
+            <ul>
+                <li><input type="checkbox" class="checklist-item"> 🧻 Влажные салфетки (не везде есть бумага)</li>
+                <li><input type="checkbox" class="checklist-item"> 🧴 Антибактериальный гель для рук</li>
+                <li><input type="checkbox" class="checklist-item"> 💧 Карманная бутылочка воды (для некоторых типов унитазов)</li>
+                <li><input type="checkbox" class="checklist-item"> 📱 Заряженный телефон (для карт и переводчика)</li>
+                <li><input type="checkbox" class="checklist-item"> 🩴 Сменная обувь/тапочки (в некоторых местах)</li>
+                <li><input type="checkbox" class="checklist-item"> 💊 Лекарства от расстройства желудка (на всякий случай)</li>
+            </ul>
+            <p style="margin-top: 10px; font-size: 0.9rem;">💡 <em>Отмечайте выполненные пункты — они сохранятся в браузере</em></p>
+        </div>
+
         <div class="nav-buttons" style="margin-top: 40px; justify-content: center;">
             <a href="index.html" class="nav-button">🏠 На главную</a>
         </div>
@@ -316,5 +378,18 @@
         </div>
     </div>
     <script src="js/currency.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Сохранение состояния чек-листов в localStorage
+        document.querySelectorAll('.checklist-item').forEach(cb => {
+            const key = `checklist_toilet_${cb.parentElement.textContent.trim()}`;
+            const saved = localStorage.getItem(key);
+            if (saved === 'true') cb.checked = true;
+            
+            cb.addEventListener('change', () => {
+                localStorage.setItem(key, cb.checked);
+            });
+        });
+    </script>
 </body>
 </html>
