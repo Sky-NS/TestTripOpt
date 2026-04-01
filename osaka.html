@@ -6,7 +6,7 @@
     <title>Осака — база для Киото, Нара</title>
     <link rel="stylesheet" href="CSS/style.css">
     <style>
-        /* Дополнительные стили только для страницы Осаки */
+        /* Дополнительные стили для страницы Осаки */
         .day-highlight {
             background-color: #fff9f5;
             border: 1px solid #efebe5;
@@ -203,6 +203,8 @@
                 <li><a href="budget.html">💰 Общий бюджет</a></li>
                 <li><a href="toilet-map.html">🚽 Карта туалетов</a></li>
                 <li><a href="visa.html">🛂 Всё для визы</a></li>
+                <li><a href="contacts.html">📞 Контакты</a></li>
+                <li><a href="glossary.html">📖 Глоссарий</a></li>
             </ul>
         </div>
 
@@ -218,17 +220,16 @@
             <strong>💱 КУРС ВАЛЮТ (расчётный):</strong> <span id="exchangeRatePlaceholder">загрузка...</span>
         </div>
 
-        <!-- Быстрая навигация по дням -->
         <div class="quick-nav">
             <strong style="color: #b03e3e;">📅 Дни:</strong>
-            <a href="#day1">11 мая</a>
-            <a href="#day2">12 мая</a>
-            <a href="#day3">13 мая</a>
-            <a href="#day4">14 мая</a>
-            <a href="#day5">15 мая</a>
-            <a href="#day6">16 мая</a>
-            <a href="#day7">17 мая</a>
-            <a href="#day8">18 мая</a>
+            <a href="#day1">День 1</a>
+            <a href="#day2">День 2</a>
+            <a href="#day3">День 3</a>
+            <a href="#day4">День 4</a>
+            <a href="#day5">День 5</a>
+            <a href="#day6">День 6</a>
+            <a href="#day7">День 7</a>
+            <a href="#day8">День 8</a>
         </div>
 
         <div style="margin-bottom: 20px;">
@@ -566,7 +567,7 @@
         <div class="day-highlight" id="day7">
             <h3>🗓️ День 7 · 17 мая (вс) — два варианта на выбор</h3>
             <div style="margin-bottom: 20px;">
-                <p><strong>Вместо Кобе у нас есть два сценария. Выбираем подходящий по настроению:</strong></p>
+                <p><strong>Выбираем подходящий по настроению:</strong></p>
             </div>
             <div class="scenario-card scenario-a">
                 <h4 style="margin-top: 0; color: #0066cc;">🍁 СЦЕНАРИЙ А: Дополнительный день в Киото</h4>
@@ -624,7 +625,6 @@
             </div>
         </div>
 
-        <!-- ===== ТАБЛИЦА РАСХОДОВ ===== -->
         <h2>📊 Сводка расходов за 7 дней в Осаке</h2>
         <table style="width:100%; border-collapse: collapse; margin: 30px 0; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #efebe5;">
             <thead>
@@ -633,7 +633,7 @@
                     <th style="padding: 12px 15px; text-align: left;">Маршрут</th>
                     <th style="padding: 12px 15px; text-align: left;">Йены (JPY)</th>
                     <th style="padding: 12px 15px; text-align: left;">Рубли (≈)</th>
-                  </tr>
+                   </tr>
             </thead>
             <tbody>
                 <tr><td style="padding: 12px 15px;">День 1</td><td style="padding: 12px 15px;">Прилёт</td><td style="padding: 12px 15px;">¥<span data-jpy="1170">1170</span></td><td style="padding: 12px 15px;"><span class="rub-value" data-jpy="1170"></span></td></tr>
@@ -668,7 +668,6 @@
             <p style="margin-top: 10px; font-size: 0.9rem;">💡 <em>Отмечайте выполненные пункты — они сохранятся в браузере</em></p>
         </div>
 
-        <!-- СОВЕТЫ -->
         <div class="tip">
             <strong>🍜 СОВЕТЫ ПО ТРАНСПОРТУ В ОСАКЕ:</strong><br><br>
             <p><strong>ICOCA карта:</strong> Депозит ¥<span data-jpy="500">500</span> <span class="rub-value" data-jpy="500"></span>, пополнение.</p>
@@ -693,11 +692,10 @@
             const key = `checklist_osaka_${cb.parentElement.textContent.trim()}`;
             const saved = localStorage.getItem(key);
             if (saved === 'true') cb.checked = true;
-            
             cb.addEventListener('change', () => {
                 localStorage.setItem(key, cb.checked);
             });
         });
     </script>
 </body>
-                                                                            </html>
+</html>
