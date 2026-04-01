@@ -524,8 +524,12 @@
                 </div>
             </div>
 
-            <div class="attraction-card" style="margin-top: 20px;">
-                <h4 style="margin-top: 0; color: #2d7a6e;">🚲 ДЕТАЛЬНЫЙ МАРШРУТ ВЕЛОПРОГУЛКИ (11:00 – 18:30)</h4>
+    <div class="attraction-card" style="margin-top: 20px;">
+    <div class="collapsible-header" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;" aria-expanded="true">
+        <h4 style="margin: 0; color: #2d7a6e;">🚲 ДЕТАЛЬНЫЙ МАРШРУТ ВЕЛОПРОГУЛКИ (11:00 – 18:30)</h4>
+        <span style="font-size: 1.2rem;">▼</span>
+    </div>
+    <div class="collapsible-content" style="display: block;">
                 
                 <div style="background-color: #fff9e6; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
                     <p><strong>📊 Общая информация:</strong></p>
@@ -760,8 +764,24 @@
                         <div class="timeline-desc">
                             Пешком возвращаемся в ID Stay (10–15 мин)
                         </div>
-                    </div>
-                </div>
+    </div>
+</div>
+
+<script>
+    // Добавляем интерактивность для сворачиваемых блоков
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('span:last-child');
+        let isExpanded = true;
+        
+        header.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            content.style.display = isExpanded ? 'block' : 'none';
+            arrow.textContent = isExpanded ? '▼' : '▶';
+            header.setAttribute('aria-expanded', isExpanded);
+        });
+    });
+</script>
 
                 <div class="price-summary" style="margin-top: 15px;">
                     <p><strong>💰 Бюджет на велопрогулку:</strong></p>
