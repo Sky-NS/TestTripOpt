@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глоссарий · Полезные фразы и этикет</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        /* Стили для страницы глоссария */
+        .glossary-section {
+            margin: 40px 0;
+        }
+        .glossary-section h2 {
+            border-bottom: 2px solid #d4c9bc;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        .phrase-card {
+            background-color: #f9f7f4;
+            border: 1px solid #efebe5;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: transform 0.2s;
+        }
+        .phrase-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-color: #b03e3e;
+        }
+        .phrase-card h3 {
+            margin-top: 0;
+            color: #b03e3e;
+            font-size: 1.2rem;
+        }
+        .phrase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .phrase-item {
+            border-top: 1px solid #efebe5;
+            padding-top: 12px;
+        }
+        .phrase-ru {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .phrase-original {
+            font-family: 'Noto Sans JP', monospace;
+            font-size: 1rem;
+            color: #2d7a6e;
+            margin: 5px 0;
+        }
+        .phrase-translit {
+            font-size: 0.85rem;
+            color: #6b5a4a;
+            font-style: italic;
+        }
+        .copy-btn {
+            background: none;
+            border: 1px solid #d4c9bc;
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover {
+            background-color: #b03e3e;
+            color: white;
+            border-color: #b03e3e;
+        }
+        .culture-tip {
+            background-color: #fff9e6;
+            border-left: 4px solid #f0b400;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .quick-nav {
+            background: #f5f2eb;
+            padding: 12px 20px;
+            border-radius: 40px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        .quick-nav a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        .quick-nav a:hover {
+            background-color: #b03e3e;
+            color: white;
+        }
+        .currency-note {
+            background-color: #fff9e6;
+            border-left: 4px solid #f0b400;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .phrase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="trip-card">
+        <div class="burger-menu">
+            <input id="menu-toggle" type="checkbox" />
+            <label class="menu-btn" for="menu-toggle">
+                <span></span>
+            </label>
+            <ul class="menu-box">
+                <li><a href="index.html">🏠 Главная</a></li>
+                <li><a href="osaka.html">🌆 Осака</a></li>
+                <li><a href="fuji.html">🗻 Фудзи</a></li>
+                <li><a href="tokyo.html">🗼 Токио</a></li>
+                <li><a href="shanghai.html">🏙 Шанхай</a></li>
+                <li><a href="budget.html">💰 Общий бюджет</a></li>
+                <li><a href="toilet-map.html">🚽 Карта туалетов</a></li>
+                <li><a href="visa.html">🛂 Всё для визы</a></li>
+                <li><a href="contacts.html">📞 Контакты</a></li>
+                <li><a href="glossary.html" class="active">📖 Глоссарий</a></li>
+            </ul>
+        </div>
+
+        <div class="currency-note">
+            <strong>💱 КУРС ВАЛЮТ (расчётный):</strong> <span id="exchangeRatePlaceholder">загрузка...</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+            <span style="font-size: 4rem;">📖</span>
+            <div>
+                <h1 style="text-align: left; margin: 0; font-size: 3rem;">Глоссарий</h1>
+                <p style="color: #6b5a4a; margin: 5px 0 0; font-size: 1.2rem;">Полезные фразы, этикет и культурные заметки</p>
+            </div>
+        </div>
+
+        <!-- Быстрая навигация -->
+        <div class="quick-nav">
+            <strong style="color: #b03e3e;">📌 Разделы:</strong>
+            <a href="#japanese">🇯🇵 Японский</a>
+            <a href="#chinese">🇨🇳 Китайский</a>
+            <a href="#etiquette">🎌 Этикет и культура</a>
+        </div>
+
+        <!-- ЯПОНСКИЙ РАЗДЕЛ -->
+        <div class="glossary-section" id="japanese">
+            <h2>🇯🇵 Японский язык · 日本語</h2>
+            <div class="phrase-card">
+                <h3>👋 Приветствия и вежливость</h3>
+                <div class="phrase-grid">
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Здравствуйте</div>
+                        <div class="phrase-original">こんにちは</div>
+                        <div class="phrase-translit">Konnichiwa</div>
+                        <button class="copy-btn" data-text="こんにちは">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Доброе утро</div>
+                        <div class="phrase-original">おはようございます</div>
+                        <div class="phrase-translit">Ohayō gozaimasu</div>
+                        <button class="copy-btn" data-text="おはようございます">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Добрый вечер</div>
+                        <div class="phrase-original">こんばんは</div>
+                        <div class="phrase-translit">Konbanwa</div>
+                        <button class="copy-btn" data-text="こんばんは">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Спасибо</div>
+                        <div class="phrase-original">ありがとうございます</div>
+                        <div class="phrase-translit">Arigatō gozaimasu</div>
+                        <button class="copy-btn" data-text="ありがとうございます">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Извините / Простите</div>
+                        <div class="phrase-original">すみません</div>
+                        <div class="phrase-translit">Sumimasen</div>
+                        <button class="copy-btn" data-text="すみません">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">До свидания</div>
+                        <div class="phrase-original">さようなら</div>
+                        <div class="phrase-translit">Sayōnara</div>
+                        <button class="copy-btn" data-text="さようなら">📋 Копировать</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <h3>🚆 Транспорт и направления</h3>
+                <div class="phrase-grid">
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Где находится станция?</div>
+                        <div class="phrase-original">駅はどこですか？</div>
+                        <div class="phrase-translit">Eki wa doko desu ka?</div>
+                        <button class="copy-btn" data-text="駅はどこですか？">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Сколько стоит билет до ...?</div>
+                        <div class="phrase-original">...までの切符はいくらですか？</div>
+                        <div class="phrase-translit">... made no kippu wa ikura desu ka?</div>
+                        <button class="copy-btn" data-text="...までの切符はいくらですか？">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Этот поезд идёт до ...?</div>
+                        <div class="phrase-original">この電車は...行きですか？</div>
+                        <div class="phrase-translit">Kono densha wa ... yuki desu ka?</div>
+                        <button class="copy-btn" data-text="この電車は...行きですか？">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Помогите, пожалуйста</div>
+                        <div class="phrase-original">助けてください</div>
+                        <div class="phrase-translit">Tasukete kudasai</div>
+                        <button class="copy-btn" data-text="助けてください">📋 Копировать</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <h3>🍣 Ресторан и еда</h3>
+                <div class="phrase-grid">
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Меню, пожалуйста</div>
+                        <div class="phrase-original">メニューをください</div>
+                        <div class="phrase-translit">Menyū o kudasai</div>
+                        <button class="copy-btn" data-text="メニューをください">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Это вкусно</div>
+                        <div class="phrase-original">美味しいです</div>
+                        <div class="phrase-translit">Oishii desu</div>
+                        <button class="copy-btn" data-text="美味しいです">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Я вегетарианец</div>
+                        <div class="phrase-original">ベジタリアンです</div>
+                        <div class="phrase-translit">Bejitarian desu</div>
+                        <button class="copy-btn" data-text="ベジタリアンです">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Счёт, пожалуйста</div>
+                        <div class="phrase-original">お会計をお願いします</div>
+                        <div class="phrase-translit">Okaikei o onegai shimasu</div>
+                        <button class="copy-btn" data-text="お会計をお願いします">📋 Копировать</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <h3>♨️ Онсэн и гостиница</h3>
+                <div class="phrase-grid">
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Можно ли с тату?</div>
+                        <div class="phrase-original">入れ墨は大丈夫ですか？</div>
+                        <div class="phrase-translit">Irezumi wa daijōbu desu ka?</div>
+                        <button class="copy-btn" data-text="入れ墨は大丈夫ですか？">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Где раздевалка?</div>
+                        <div class="phrase-original">脱衣所はどこですか？</div>
+                        <div class="phrase-translit">Datsui-sho wa doko desu ka?</div>
+                        <button class="copy-btn" data-text="脱衣所はどこですか？">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Есть ли частная баня?</div>
+                        <div class="phrase-original">貸切風呂はありますか？</div>
+                        <div class="phrase-translit">Kashikiri buro wa arimasu ka?</div>
+                        <button class="copy-btn" data-text="貸切風呂はありますか？">📋 Копировать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- КИТАЙСКИЙ РАЗДЕЛ -->
+        <div class="glossary-section" id="chinese">
+            <h2>🇨🇳 Китайский язык · 中文</h2>
+            <div class="phrase-card">
+                <h3>👋 Приветствия и вежливость</h3>
+                <div class="phrase-grid">
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Здравствуйте</div>
+                        <div class="phrase-original">你好</div>
+                        <div class="phrase-translit">Nǐ hǎo</div>
+                        <button class="copy-btn" data-text="你好">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Спасибо</div>
+                        <div class="phrase-original">谢谢</div>
+                        <div class="phrase-translit">Xièxiè</div>
+                        <button class="copy-btn" data-text="谢谢">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Извините</div>
+                        <div class="phrase-original">对不起</div>
+                        <div class="phrase-translit">Duìbùqǐ</div>
+                        <button class="copy-btn" data-text="对不起">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">До свидания</div>
+                        <div class="phrase-original">再见</div>
+                        <div class="phrase-translit">Zàijiàn</div>
+                        <button class="copy-btn" data-text="再见">📋 Копировать</button>
+                    </div>
+                </div>
+            </div>
+            <div class="phrase-card">
+                <h3>🚖 Транспорт и шопинг</h3>
+                <div class="phrase-grid">
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Сколько стоит?</div>
+                        <div class="phrase-original">多少钱？</div>
+                        <div class="phrase-translit">Duōshǎo qián?</div>
+                        <button class="copy-btn" data-text="多少钱？">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Мне нужно такси</div>
+                        <div class="phrase-original">我需要出租车</div>
+                        <div class="phrase-translit">Wǒ xūyào chūzūchē</div>
+                        <button class="copy-btn" data-text="我需要出租车">📋 Копировать</button>
+                    </div>
+                    <div class="phrase-item">
+                        <div class="phrase-ru">Помогите!</div>
+                        <div class="phrase-original">救命！</div>
+                        <div class="phrase-translit">Jiùmìng!</div>
+                        <button class="copy-btn" data-text="救命！">📋 Копировать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ЭТИКЕТ И КУЛЬТУРА -->
+        <div class="glossary-section" id="etiquette">
+            <h2>🎌 Этикет и культурные заметки</h2>
+            
+            <div class="culture-tip">
+                <strong>🇯🇵 Япония:</strong>
+                <ul>
+                    <li><strong>Поклоны:</strong> вместо рукопожатий используется поклон. Лёгкий наклон головы — для приветствия, глубокий поклон — для извинений или благодарности.</li>
+                    <li><strong>Обувь:</strong> в домах, храмах, некоторых ресторанах (с татами) обувь снимают. Носите носки без дырок.</li>
+                    <li><strong>Онсэн:</strong> перед погружением нужно тщательно вымыться с мылом и ополоснуться. Полотенце в воду не опускают. Люди с татуировками часто не допускаются в общественные бани — ищите частные.</li>
+                    <li><strong>Палочки:</strong> не втыкайте их вертикально в рис (это ассоциируется с похоронами). Не передавайте еду из палочек в палочки.</li>
+                    <li><strong>Чаевые:</strong> в Японии чаевые не приняты и могут быть восприняты как оскорбление. Вежливость и благодарность — лучшая награда.</li>
+                </ul>
+            </div>
+            <div class="culture-tip">
+                <strong>🇨🇳 Китай:</strong>
+                <ul>
+                    <li><strong>Приветствие:</strong> лёгкий кивок или рукопожатие. Пожилым людям уступают место.</li>
+                    <li><strong>Подарки:</strong> часы, зонты, белые цветы — плохая примета (ассоциируются с похоронами). Лучше дарить чай, сладости или сувениры из России.</li>
+                    <li><strong>За столом:</strong> не оставляйте палочки в тарелке вертикально. Не начинайте есть первым, если не пригласили.</li>
+                    <li><strong>Чаевые:</strong> официально не приветствуются, но в туристических местах иногда оставляют (около 5–10%).</li>
+                    <li><strong>Очереди:</strong> в Китае очереди могут быть менее организованными — сохраняйте спокойствие и вежливость.</li>
+                </ul>
+            </div>
+            <div class="culture-tip">
+                <strong>💡 Универсальные советы:</strong>
+                <ul>
+                    <li><strong>Улыбайтесь и говорите «сумимасен» / «duìbùqǐ»</strong> — это помогает во многих ситуациях.</li>
+                    <li><strong>Носите с собой влажные салфетки</strong> — в некоторых туалетах нет бумаги.</li>
+                    <li><strong>Заранее скачайте офлайн-карты и переводчик</strong> — интернет может быть нестабильным.</li>
+                    <li><strong>Изучите местные обычаи</strong> — уважение к культуре всегда ценится.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Глоссарий поможет вам чувствовать себя увереннее в Японии и Китае</p>
+            <p style="font-size: 0.9rem;">Нажмите на кнопку "Копировать", чтобы вставить фразу в переводчик или показать местным</p>
+        </div>
+    </div>
+
+    <script src="js/currency.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Функция копирования текста
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.getAttribute('data-text');
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = btn.textContent;
+                    btn.textContent = '✅ Скопировано!';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                    }, 1500);
+                }).catch(() => {
+                    alert('Не удалось скопировать текст');
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
