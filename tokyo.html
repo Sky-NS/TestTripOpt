@@ -16,7 +16,6 @@
             border-left: 4px solid #b03e3e;
             scroll-margin-top: 80px;
         }
-        
         .day-highlight h3 {
             margin-top: 0;
             color: #1a1a1a;
@@ -25,7 +24,6 @@
             padding-bottom: 12px;
             margin-bottom: 20px;
         }
-        
         .transport-note {
             background-color: #f5f2eb;
             padding: 12px 18px;
@@ -34,7 +32,6 @@
             margin: 15px 0;
             color: #4a4a4a;
         }
-        
         .route-card {
             background-color: white;
             border: 1px solid #efebe5;
@@ -42,14 +39,12 @@
             margin: 15px 0;
             border-radius: 6px;
         }
-        
         .route-title {
             font-weight: 600;
             color: #2d2d2d;
             margin-bottom: 10px;
             font-size: 1.1rem;
         }
-        
         .route-detail {
             display: flex;
             justify-content: space-between;
@@ -57,7 +52,6 @@
             padding: 3px 0;
             border-bottom: 1px dotted #efebe5;
         }
-        
         .total-day {
             background-color: #b03e3e;
             color: white;
@@ -68,7 +62,6 @@
             display: flex;
             justify-content: space-between;
         }
-        
         .hotel-info {
             background-color: #f0f0f0;
             padding: 20px;
@@ -76,7 +69,6 @@
             margin-bottom: 30px;
             border-left: 4px solid #b03e3e;
         }
-        
         .attraction-card {
             background-color: #f9f7f4;
             padding: 20px;
@@ -85,26 +77,22 @@
             border: 1px solid #efebe5;
             transition: transform 0.2s;
         }
-        
         .attraction-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        
         .attraction-card img {
             width: 100%;
             max-width: 650px;
             border-radius: 12px;
             margin-bottom: 15px;
         }
-        
         .attraction-title {
             font-size: 1.3rem;
             font-weight: 600;
             color: #1a1a1a;
             margin-bottom: 5px;
         }
-        
         .attraction-badge {
             display: inline-block;
             background-color: #b03e3e;
@@ -114,7 +102,6 @@
             font-size: 0.8rem;
             margin-right: 8px;
         }
-        
         .weather-note {
             background-color: #e6f2f0;
             padding: 15px;
@@ -122,7 +109,6 @@
             margin: 20px 0;
             border-left: 4px solid #2d7a6e;
         }
-        
         .city-badge {
             display: inline-block;
             background-color: #b03e3e;
@@ -133,7 +119,6 @@
             margin-right: 10px;
             margin-bottom: 10px;
         }
-
         .day-trip-header {
             background-color: #fff0e0;
             padding: 15px;
@@ -143,7 +128,6 @@
             font-weight: 600;
             color: #2d7a6e;
         }
-
         .currency-note {
             background-color: #fff9e6;
             border-left: 4px solid #f0b400;
@@ -152,7 +136,6 @@
             margin: 20px 0;
             font-size: 0.9rem;
         }
-        
         .quick-nav {
             background: #f5f2eb;
             padding: 12px 20px;
@@ -176,7 +159,6 @@
             background-color: #b03e3e;
             color: white;
         }
-        
         .checklist-block {
             background-color: #f0f5fa;
             border-left: 4px solid #2d7a6e;
@@ -205,8 +187,11 @@
                 <li><a href="fuji.html">🗻 Фудзи</a></li>
                 <li><a href="tokyo.html" class="active">🗼 Токио</a></li>
                 <li><a href="shanghai.html">🏙 Шанхай</a></li>
+                <li><a href="budget.html">💰 Общий бюджет</a></li>
                 <li><a href="toilet-map.html">🚽 Карта туалетов</a></li>
                 <li><a href="visa.html">🛂 Всё для визы</a></li>
+                <li><a href="contacts.html">📞 Контакты</a></li>
+                <li><a href="glossary.html">📖 Глоссарий</a></li>
             </ul>
         </div>
 
@@ -222,7 +207,6 @@
             <strong>💱 КУРС ВАЛЮТ (расчётный):</strong> <span id="exchangeRatePlaceholder">загрузка...</span>
         </div>
 
-        <!-- Быстрая навигация по дням -->
         <div class="quick-nav">
             <strong style="color: #b03e3e;">📅 Дни:</strong>
             <a href="#day10">День 10 (20 мая)</a>
@@ -558,7 +542,7 @@
                     <th style="padding: 12px 15px; text-align: left;">Маршрут</th>
                     <th style="padding: 12px 15px; text-align: left;">Йены (JPY)</th>
                     <th style="padding: 12px 15px; text-align: left;">Рубли (≈)</th>
-                   </tr>
+                    </tr>
             </thead>
             <tbody>
                 <tr><td style="padding: 12px 15px;">День 10</td><td style="padding: 12px 15px;">Фудзи → Токио</td><td style="padding: 12px 15px;">¥<span data-jpy="2420">2420</span></td><td style="padding: 12px 15px;"><span class="rub-value" data-jpy="2420"></span></td></tr>
@@ -608,16 +592,14 @@
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
     <script>
-        // Сохранение состояния чек-листов в localStorage
         document.querySelectorAll('.checklist-item').forEach(cb => {
             const key = `checklist_tokyo_${cb.parentElement.textContent.trim()}`;
             const saved = localStorage.getItem(key);
             if (saved === 'true') cb.checked = true;
-            
             cb.addEventListener('change', () => {
                 localStorage.setItem(key, cb.checked);
             });
         });
     </script>
 </body>
-                  </html>
+</html>
