@@ -16,7 +16,6 @@
             border-left: 4px solid #2d7a6e;
             scroll-margin-top: 80px;
         }
-        
         .day-highlight h3 {
             margin-top: 0;
             color: #1a1a1a;
@@ -25,7 +24,6 @@
             padding-bottom: 12px;
             margin-bottom: 20px;
         }
-        
         .transport-note {
             background-color: #f5f2eb;
             padding: 12px 18px;
@@ -34,7 +32,6 @@
             margin: 15px 0;
             color: #4a4a4a;
         }
-        
         .route-card {
             background-color: white;
             border: 1px solid #efebe5;
@@ -42,14 +39,12 @@
             margin: 15px 0;
             border-radius: 6px;
         }
-        
         .route-title {
             font-weight: 600;
             color: #2d2d2d;
             margin-bottom: 10px;
             font-size: 1.1rem;
         }
-        
         .route-detail {
             display: flex;
             justify-content: space-between;
@@ -57,7 +52,6 @@
             padding: 3px 0;
             border-bottom: 1px dotted #efebe5;
         }
-        
         .total-day {
             background-color: #2d7a6e;
             color: white;
@@ -68,7 +62,6 @@
             display: flex;
             justify-content: space-between;
         }
-        
         .hotel-info {
             background-color: #f0f0f0;
             padding: 20px;
@@ -76,7 +69,6 @@
             margin-bottom: 30px;
             border-left: 4px solid #2d7a6e;
         }
-        
         .attraction-card {
             background-color: #f9f7f4;
             padding: 20px;
@@ -85,26 +77,22 @@
             border: 1px solid #efebe5;
             transition: transform 0.2s;
         }
-        
         .attraction-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        
         .attraction-card img {
             width: 100%;
             max-width: 650px;
             border-radius: 12px;
             margin-bottom: 15px;
         }
-        
         .attraction-title {
             font-size: 1.3rem;
             font-weight: 600;
             color: #1a1a1a;
             margin-bottom: 5px;
         }
-        
         .attraction-badge {
             display: inline-block;
             background-color: #2d7a6e;
@@ -114,7 +102,6 @@
             font-size: 0.8rem;
             margin-right: 8px;
         }
-        
         .city-badge {
             display: inline-block;
             background-color: #2d7a6e;
@@ -125,7 +112,6 @@
             margin-right: 10px;
             margin-bottom: 10px;
         }
-
         .scenario-card {
             background-color: #fff9e6;
             border-left: 4px solid #f0b400;
@@ -133,17 +119,14 @@
             margin: 20px 0;
             border-radius: 8px;
         }
-        
         .scenario-a {
             background-color: #e6f2ff;
             border-left-color: #0066cc;
         }
-        
         .scenario-b {
             background-color: #e6f2e6;
             border-left-color: #2d7a6e;
         }
-        
         .locker-info {
             background-color: #fff0e0;
             border-left: 4px solid #ff8c00;
@@ -151,7 +134,6 @@
             border-radius: 8px;
             margin: 20px 0;
         }
-
         .currency-note {
             background-color: #fff9e6;
             border-left: 4px solid #f0b400;
@@ -160,7 +142,6 @@
             margin: 20px 0;
             font-size: 0.9rem;
         }
-        
         .quick-nav {
             background: #f5f2eb;
             padding: 12px 20px;
@@ -184,7 +165,6 @@
             background-color: #2d7a6e;
             color: white;
         }
-        
         .checklist-block {
             background-color: #f0f5fa;
             border-left: 4px solid #2d7a6e;
@@ -213,8 +193,11 @@
                 <li><a href="fuji.html">🗻 Фудзи</a></li>
                 <li><a href="tokyo.html">🗼 Токио</a></li>
                 <li><a href="shanghai.html" class="active">🏙 Шанхай</a></li>
+                <li><a href="budget.html">💰 Общий бюджет</a></li>
                 <li><a href="toilet-map.html">🚽 Карта туалетов</a></li>
                 <li><a href="visa.html">🛂 Всё для визы</a></li>
+                <li><a href="contacts.html">📞 Контакты</a></li>
+                <li><a href="glossary.html">📖 Глоссарий</a></li>
             </ul>
         </div>
 
@@ -230,7 +213,6 @@
             <strong>💱 КУРС ВАЛЮТ (расчётный):</strong> <span id="exchangeRatePlaceholder">загрузка...</span>
         </div>
 
-        <!-- Быстрая навигация по дням -->
         <div class="quick-nav">
             <strong style="color: #2d7a6e;">📅 Дни:</strong>
             <a href="#day15">День 15 (25 мая)</a>
@@ -417,7 +399,7 @@
                     <th style="padding: 12px 15px; text-align: left;">Маршрут/Действие</th>
                     <th style="padding: 12px 15px; text-align: left;">Юани (CNY)</th>
                     <th style="padding: 12px 15px; text-align: left;">Рубли (≈)</th>
-                   </tr>
+                    </tr>
             </thead>
             <tbody>
                 <tr><td style="padding: 12px 15px;">25 мая</td><td style="padding: 12px 15px;">Камера хранения PVG (за чемодан)</td><td style="padding: 12px 15px;">¥<span data-cny="50">50</span></td><td style="padding: 12px 15px;"><span class="rub-value-cny" data-cny="50"></span></td></tr>
@@ -459,15 +441,10 @@
 
         <div class="tip">
             <strong>🏙 СОВЕТЫ ПО ШАНХАЮ:</strong><br><br>
-            
             <p><strong>🎒 Камера хранения:</strong> В аэропорту Пудун работает до 24:00. Находится на 1 этаже в терминалах T1 и T2. Цены: маленькая сумка ¥<span data-cny="20">20</span> <span class="rub-value-cny" data-cny="20"></span>/4ч, большой чемодан ¥<span data-cny="50">50</span> <span class="rub-value-cny" data-cny="50"></span>/4ч. Оплата наличными или WeChat Pay.</p>
-            
             <p><strong>🗼 Shanghai Tower:</strong> Билеты онлайн от ¥<span data-cny="180">180</span>–<span data-cny="220">220</span> <span class="rub-range-cny" data-min="180" data-max="220"></span>. Последний вход в 21:30. В ясную погоду вид отличный.</p>
-            
             <p><strong>🛍 Аутлет Florentia Village:</strong> Работает до 21:30. На входе возьмите карту и купон на скидку.</p>
-            
             <p><strong>📱 Полезные приложения:</strong> WeChat, Alipay, Maps.me, VPN (обязательно).</p>
-            
             <p><strong>🛂 Виза:</strong> Гражданам РФ нужна виза в Китай. Проверить правила ближе к дате.</p>
         </div>
 
@@ -480,16 +457,14 @@
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
     <script>
-        // Сохранение состояния чек-листов в localStorage
         document.querySelectorAll('.checklist-item').forEach(cb => {
             const key = `checklist_shanghai_${cb.parentElement.textContent.trim()}`;
             const saved = localStorage.getItem(key);
             if (saved === 'true') cb.checked = true;
-            
             cb.addEventListener('change', () => {
                 localStorage.setItem(key, cb.checked);
             });
         });
     </script>
 </body>
-                    </html>
+</html>
