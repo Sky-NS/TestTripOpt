@@ -126,14 +126,6 @@
             color: #8b7a6a;
             margin-top: 5px;
         }
-        .currency-note {
-            background-color: #fff9e6;
-            border-left: 4px solid #f0b400;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-size: 0.9rem;
-        }
         .scenario-card {
             background-color: #fff9e6;
             border-left: 4px solid #f0b400;
@@ -149,29 +141,6 @@
             background-color: #e6f2e6;
             border-left-color: #2d7a6e;
         }
-        .quick-nav {
-            background: #f5f2eb;
-            padding: 12px 20px;
-            border-radius: 40px;
-            margin: 20px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-        }
-        .quick-nav a {
-            text-decoration: none;
-            color: #2d2d2d;
-            font-weight: 500;
-            padding: 5px 12px;
-            border-radius: 20px;
-            transition: all 0.2s;
-        }
-        .quick-nav a:hover {
-            background-color: #b03e3e;
-            color: white;
-        }
         .checklist-block {
             background-color: #f0f5fa;
             border-left: 4px solid #2d7a6e;
@@ -179,6 +148,24 @@
         .checklist-block ul {
             columns: 2;
             margin: 0;
+        }
+        .map-button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .map-button.google {
+            background-color: #4285F4;
+        }
+        .map-button.google:hover {
+            background-color: #2a56c6;
+        }
+        .map-button.mapsme {
+            background-color: #2C9E4C;
+        }
+        .map-button.mapsme:hover {
+            background-color: #1f7137;
         }
         @media (max-width: 768px) {
             .checklist-block ul {
@@ -216,22 +203,6 @@
             </div>
         </div>
 
-        <div class="currency-note" id="currencyNote">
-            <strong>💱 КУРС ВАЛЮТ (расчётный):</strong> <span id="exchangeRatePlaceholder">загрузка...</span>
-        </div>
-
-        <div class="quick-nav">
-            <strong style="color: #b03e3e;">📅 Дни:</strong>
-            <a href="#day1">День 1</a>
-            <a href="#day2">День 2</a>
-            <a href="#day3">День 3</a>
-            <a href="#day4">День 4</a>
-            <a href="#day5">День 5</a>
-            <a href="#day6">День 6</a>
-            <a href="#day7">День 7</a>
-            <a href="#day8">День 8</a>
-        </div>
-
         <div style="margin-bottom: 20px;">
             <span class="city-badge">🏠 Осака (дом)</span>
             <span class="city-badge">⛩ Киото (2 дня)</span>
@@ -243,18 +214,13 @@
             <h3 style="margin-top: 0; color: #b03e3e;">🏠 НАШ ДОМ В ОСАКЕ</h3>
             <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-between;">
                 <div>
-                    <p><strong>Osaka Station 3min Direct Namba 11min Direct 6min Walk to Station 4BR House</strong></p>
-                    <p>📍 <strong>Адрес:</strong> 海老江3丁目6–19 Ebie House, Осака</p>
+                    <p><strong>Ebie House</strong></p>
+                    <p>📍 <strong>Адрес:</strong> chōme-6-19 Ebie, Fukushima Ward, Osaka, 553-0001, Япония</p>
                     <p>📅 <strong>Заезд:</strong> 11 мая, 21:00 | <strong>Выезд:</strong> 18 мая, 12:00</p>
                 </div>
-                <div>
-                    <p><strong>🚉 Транспортная доступность:</strong></p>
-                    <p>• JR станция <strong>Ebie</strong> — 6 мин пешком</p>
-                    <p>• До станции <strong>Osaka (Umeda)</strong> — 3 мин на поезде</p>
-                    <p>• До <strong>Namba</strong> — 11 мин прямым поездом</p>
-                </div>
-                <div>
-                    <a class="map-button" href="https://www.google.com/maps/search/海老江3丁目6–19+Ebie+House+Osaka" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/ch%C5%8Dme-6-19+Ebie,+Fukushima+Ward,+Osaka,+553-0001" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=ch%C5%8Dme-6-19%20Ebie%2C%20Fukushima%20Ward%2C%20Osaka" target="_blank">🗺 Maps.me</a>
                     <a class="map-button" href="https://www.booking.com/Share-FVKrDuX" target="_blank" style="background-color: #003580;">🔗 Booking.com</a>
                 </div>
             </div>
@@ -304,7 +270,10 @@
                     <div class="price-item"><span>Еда</span><span>¥<span data-jpy="500">500</span>–<span data-jpy="1500">1500</span> <span class="rub-range" data-min="500" data-max="1500"></span></span></div>
                     <div class="price-item"><span>⏰ Часы работы</span><span>9:00–18:00</span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Kuromon+Market+Osaka" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Kuromon+Market+Osaka" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Kuromon%20Market%20Osaka" target="_blank">🗺 Maps.me</a>
+                </div>
                 <div class="photo-credit">Фото: Kuromon Market</div>
             </div>
 
@@ -317,7 +286,10 @@
                     <div class="price-item"><span>⏰ Работа магазинов</span><span>10:00–20:30</span></div>
                     <div class="price-item"><span>🚶 Сама улица</span><span>круглосуточно</span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Shinsaibashi+Osaka" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Shinsaibashi+Osaka" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Shinsaibashi%20Osaka" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
 
             <div class="attraction-card">
@@ -328,7 +300,10 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>⏰ Район</span><span>круглосуточно</span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Dotonbori+Osaka" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Dotonbori+Osaka" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Dotonbori%20Osaka" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
 
             <div class="attraction-card">
@@ -340,7 +315,10 @@
                     <div class="price-item"><span>Вход</span><span>¥<span data-jpy="1500">1500</span> <span class="rub-value" data-jpy="1500"></span></span></div>
                     <div class="price-item"><span>⏰ Часы работы</span><span>9:30–22:30 (вход до 22:00)</span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Umeda+Sky+Building+Osaka" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Umeda+Sky+Building+Osaka" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Umeda%20Sky%20Building%20Osaka" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
 
             <div class="total-day">
@@ -375,7 +353,10 @@
                     <div class="price-item"><span>Вход</span><span>¥<span data-jpy="600">600</span> <span class="rub-value" data-jpy="600"></span></span></div>
                     <div class="price-item"><span>⏰ Часы работы</span><span>9:00–18:00 (вход до 17:30)</span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Osaka+Castle" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Osaka+Castle" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Osaka%20Castle" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://i0.wp.com/japancitytour.com/wp-content/uploads/2024/02/Osaka-Universal-Studio-Japan.jpg?resize=768%2C512&ssl=1" alt="Universal Studios Japan">
@@ -385,7 +366,10 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>Билет</span><span>¥<span data-jpy="9800">9800</span> <span class="rub-value" data-jpy="9800"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Universal+Studios+Japan+Osaka" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Universal+Studios+Japan+Osaka" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Universal%20Studios%20Japan%20Osaka" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://i.pinimg.com/736x/f5/fe/7c/f5fe7c885a71820fffcb37987a270695.jpg" alt="Shinsekai">
@@ -395,7 +379,10 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>Башня Цутэнкаку</span><span>¥<span data-jpy="900">900</span> <span class="rub-value" data-jpy="900"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Shinsekai+Osaka" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Shinsekai+Osaka" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Shinsekai%20Osaka" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="total-day">
                 <span>💰 ИТОГО НА ДЕНЬ (транспорт + входные):</span>
@@ -420,7 +407,10 @@
                 <div class="attraction-title">⛩ Фусими Инари (Fushimi Inari)</div>
                 <span class="attraction-badge">бесплатно</span>
                 <p>Знаменитое святилище с тысячами красных тории.</p>
-                <a class="map-button" href="https://www.google.com/maps/search/Fushimi+Inari+Taisha+Kyoto" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Fushimi+Inari+Taisha+Kyoto" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Fushimi%20Inari%20Taisha%20Kyoto" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://i.ibb.co/60nbxkh6/IMG-20250223-152553.jpg" alt="Tofukuji Funda-in">
@@ -430,14 +420,20 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>Вход</span><span>¥<span data-jpy="500">500</span> <span class="rub-value" data-jpy="500"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Tofukuji+Funda-in+Kyoto" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Tofukuji+Funda-in+Kyoto" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Tofukuji%20Funda-in%20Kyoto" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://avatars.mds.yandex.net/i?id=f193983d74c4bdab7a68a18b3165b7be_l-4117550-images-thumbs&n=13" alt="Gion">
                 <div class="attraction-title">🎭 Гион (Gion)</div>
                 <span class="attraction-badge">бесплатно</span>
                 <p>Район гейш.</p>
-                <a class="map-button" href="https://www.google.com/maps/search/Gion+Kyoto" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Gion+Kyoto" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Gion%20Kyoto" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="total-day">
                 <span>💰 ИТОГО НА ДЕНЬ (транспорт + входные):</span>
@@ -462,7 +458,10 @@
                 <div class="attraction-title">🎋 Бамбуковая роща Арасияма</div>
                 <span class="attraction-badge">бесплатно</span>
                 <p>Знаменитый лес из высоких бамбуков. Лучше приходить рано утром.</p>
-                <a class="map-button" href="https://www.google.com/maps/search/Arashiyama+Bamboo+Forest+Kyoto" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Arashiyama+Bamboo+Forest+Kyoto" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Arashiyama%20Bamboo%20Forest%20Kyoto" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://i.ibb.co/d0ZNxktJ/image.jpg" alt="Sagano Romantic Train">
@@ -472,7 +471,10 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>Билет</span><span>¥<span data-jpy="880">880</span> <span class="rub-value" data-jpy="880"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Saga+Torokko+Station" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Saga+Torokko+Station" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Saga%20Torokko%20Station" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://i.ibb.co/TBd6Rk0N/tfvrlr62jbhtxhgymwmw.jpg" alt="Hozugawa River Boat Ride">
@@ -482,7 +484,10 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>Билет</span><span>¥<span data-jpy="4500">4500</span> <span class="rub-value" data-jpy="4500"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Hozugawa+River+Boat+Kyoto" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Hozugawa+River+Boat+Kyoto" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Hozugawa%20River%20Boat%20Kyoto" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://i.ibb.co/fG8BvBpJ/Screenshot-20260303-190638.jpg" alt="Otagi Nenbutsuji Temple">
@@ -492,7 +497,10 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>Вход</span><span>¥<span data-jpy="500">500</span> <span class="rub-value" data-jpy="500"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Otagi+Nenbutsuji+Temple+Kyoto" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Otagi+Nenbutsuji+Temple+Kyoto" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Otagi%20Nenbutsuji%20Temple%20Kyoto" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://i.ibb.co/9HCQYQ5f/image.jpg" alt="Saiho-ji Kokedera">
@@ -502,7 +510,10 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>Вход</span><span>¥<span data-jpy="4000">4000</span> <span class="rub-value" data-jpy="4000"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Saiho-ji+Kyoto" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Saiho-ji+Kyoto" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Saiho-ji%20Kyoto" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="total-day">
                 <span>💰 ИТОГО НА ДЕНЬ (входные билеты):</span>
@@ -531,7 +542,10 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>Вход</span><span>¥<span data-jpy="600">600</span> <span class="rub-value" data-jpy="600"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Todai-ji+Nara" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Todai-ji+Nara" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Todai-ji%20Nara" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://avatars.mds.yandex.net/i?id=ca844177d98b2433fe379588a1c50cf7_l-8754774-images-thumbs&n=13" alt="Nara Park">
@@ -541,7 +555,10 @@
                 <div class="price-info" style="margin: 10px 0;">
                     <div class="price-item"><span>Крекеры</span><span>¥<span data-jpy="200">200</span> <span class="rub-value" data-jpy="200"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Nara+Park" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Nara+Park" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Nara%20Park" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="attraction-card">
                 <img src="https://i.ibb.co/RppdH3GK/image.jpg" alt="Kasuga Taisha">
@@ -552,7 +569,10 @@
                     <div class="price-item"><span>Вход на территорию</span><span>бесплатно</span></div>
                     <div class="price-item"><span>Внутренний зал</span><span>¥<span data-jpy="500">500</span> <span class="rub-value" data-jpy="500"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Kasuga+Taisha+Nara" target="_blank">🗺 На карте</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Kasuga+Taisha+Nara" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Kasuga%20Taisha%20Nara" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="total-day">
                 <span>💰 ИТОГО НА ДЕНЬ (транспорт + входные):</span>
@@ -582,7 +602,10 @@
                     <div class="price-item"><span>Транспорт до Киото (туда-обратно)</span><span>¥<span data-jpy="1160">1160</span> <span class="rub-value" data-jpy="1160"></span></span></div>
                     <div class="price-item"><span>Входные билеты (выборочно)</span><span>¥<span data-jpy="500">500</span>–<span data-jpy="1000">1000</span> <span class="rub-range" data-min="500" data-max="1000"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Kyoto" target="_blank" style="background-color: #0066cc;">🗺 Исследовать Киото</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Kyoto" target="_blank" style="background-color: #0066cc;">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Kyoto" target="_blank" style="background-color: #2C9E4C;">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="scenario-card scenario-b">
                 <h4 style="margin-top: 0; color: #2d7a6e;">🛍️ СЦЕНАРИЙ Б: Шопинг и отдых в Осаке</h4>
@@ -597,7 +620,10 @@
                     <div class="price-item"><span>Транспорт по Осаке</span><span>¥<span data-jpy="500">500</span>–<span data-jpy="1000">1000</span> <span class="rub-range" data-min="500" data-max="1000"></span></span></div>
                     <div class="price-item"><span>Вход в музеи/смотровую</span><span>от ¥<span data-jpy="500">500</span>–<span data-jpy="1500">1500</span> <span class="rub-range" data-min="500" data-max="1500"></span></span></div>
                 </div>
-                <a class="map-button" href="https://www.google.com/maps/search/Nakanoshima+Park+Osaka" target="_blank" style="background-color: #2d7a6e;">🗺 Карта района</a>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/Nakanoshima+Park+Osaka" target="_blank" style="background-color: #2d7a6e;">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=Nakanoshima%20Park%20Osaka" target="_blank" style="background-color: #2C9E4C;">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="transport-note" style="background-color: #e6f2e6; margin-top: 15px;">
                 <strong>🧘 ВЫБИРАЕМ ПО НАСТРОЕНИЮ!</strong> Оба варианта подразумевают возвращение в наш дом в Осаке к вечеру. Решение принимаем на месте.
@@ -633,7 +659,7 @@
                     <th style="padding: 12px 15px; text-align: left;">Маршрут</th>
                     <th style="padding: 12px 15px; text-align: left;">Йены (JPY)</th>
                     <th style="padding: 12px 15px; text-align: left;">Рубли (≈)</th>
-                   </tr>
+                    </tr>
             </thead>
             <tbody>
                 <tr><td style="padding: 12px 15px;">День 1</td><td style="padding: 12px 15px;">Прилёт</td><td style="padding: 12px 15px;">¥<span data-jpy="1170">1170</span></td><td style="padding: 12px 15px;"><span class="rub-value" data-jpy="1170"></span></td></tr>
@@ -698,4 +724,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
