@@ -73,13 +73,6 @@
             font-size: 1.1rem;
         }
         
-        .city-tagline {
-            color: #2d7a6e;
-            font-size: 0.95rem;
-            margin: 10px 0;
-            font-style: italic;
-        }
-        
         .flight-badge {
             background-color: #f5f2eb;
             border-radius: 30px;
@@ -126,15 +119,6 @@
             margin: 5px 0;
         }
         
-        .day-trip-note {
-            background-color: #fff9f5;
-            border-left: 4px solid #2d7a6e;
-            padding: 12px 18px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.95rem;
-        }
-        
         .progress-container {
             margin: 30px 0;
             padding: 20px;
@@ -165,6 +149,24 @@
             margin-top: 8px;
             font-size: 0.85rem;
             color: #6b5a4a;
+        }
+        .map-button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .map-button.google {
+            background-color: #4285F4;
+        }
+        .map-button.google:hover {
+            background-color: #2a56c6;
+        }
+        .map-button.mapsme {
+            background-color: #2C9E4C;
+        }
+        .map-button.mapsme:hover {
+            background-color: #1f7137;
         }
     </style>
 </head>
@@ -242,75 +244,58 @@
                 <div class="city-icon">🌆</div>
                 <div class="city-name">Осака</div>
                 <div class="city-dates">11–18 мая · 7 ночей</div>
-                <div class="city-tagline">Осака + Киото + Нара</div>
             </a>
             
             <a href="fuji.html" class="city-card">
                 <div class="city-icon">🗻</div>
                 <div class="city-name">Фудзи</div>
                 <div class="city-dates">18–20 мая · 2 ночи</div>
-                <div class="city-tagline">Фудзикавагутико + Хаконе</div>
             </a>
             
             <a href="tokyo.html" class="city-card">
                 <div class="city-icon">🗼</div>
                 <div class="city-name">Токио</div>
                 <div class="city-dates">20–25 мая · 5 ночей</div>
-                <div class="city-tagline">Токио + Камакура + Эносима</div>
             </a>
             
             <a href="shanghai.html" class="city-card">
                 <div class="city-icon">🏙</div>
                 <div class="city-name">Шанхай</div>
                 <div class="city-dates">25–26 мая · 1 ночь</div>
-                <div class="city-tagline">транзит</div>
             </a>
-        </div>
-
-        <div class="day-trip-note">
-            <strong>🚆 Однодневные поездки (day trips):</strong><br>
-            • Из <strong>Осаки</strong> (с возвращением в наш дом): Киото (2 дня), Нара (1 день)<br>
-            • Из <strong>Токио</strong> (с возвращением): Камакура + Эносима (один из дней 22–23 мая, по погоде смотрим)<br>
-            • Все детали — на страницах соответствующих городов
         </div>
 
         <h2>🏨 Все проживания</h2>
 
         <div class="hotel-card">
-            <div class="hotel-name">🌆 Osaka Station 3min Direct Namba — 4BR House</div>
+            <div class="hotel-name">🌆 Ebie House</div>
             <div class="hotel-dates">📅 11 мая (заезд 21:00) – 18 мая (выезд 12:00) · 7 ночей</div>
-            <div class="hotel-address">📍 海老江3丁目6–19 Ebie House, Осака</div>
-            <div style="margin-top: 10px;">
-                <span class="booking-ref">JR Ebie · 6 мин пешком</span>
-                <span class="booking-ref" style="margin-left: 10px;">до Осаки 3 мин</span>
-                <span class="booking-ref" style="margin-left: 10px;">4 спальни</span>
-            </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
-                <a class="map-button" href="https://www.google.com/maps/search/海老江3丁目6–19+Ebie+House+Osaka" target="_blank" style="background-color: #2d2d2d;">🗺 На карте</a>
+            <div class="hotel-address">📍 chōme-6-19 Ebie, Fukushima Ward, Osaka, 553-0001, Япония</div>
+            <div class="map-button-group">
+                <a class="map-button google" href="https://www.google.com/maps/search/ch%C5%8Dme-6-19+Ebie,+Fukushima+Ward,+Osaka,+553-0001" target="_blank">🗺 Google Maps</a>
+                <a class="map-button mapsme" href="mapsme://search?query=ch%C5%8Dme-6-19%20Ebie%2C%20Fukushima%20Ward%2C%20Osaka" target="_blank">🗺 Maps.me</a>
                 <a class="map-button" href="https://www.booking.com/Share-FVKrDuX" target="_blank" style="background-color: #003580;">🔗 Booking.com</a>
             </div>
         </div>
 
         <div class="hotel-card">
-            <div class="hotel-name">🗻 ID Stay Kawaguchiko 🔑🔑🔑</div>
+            <div class="hotel-name">🗻 ID Stay Kawaguchiko</div>
             <div class="hotel-dates">📅 18 мая (заезд 16:00–22:00) – 20 мая (выезд 10:00) · 2 ночи</div>
-            <div class="hotel-address">📍 3523-1, Фудзикавагутико, Яманаси</div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
-                <a class="map-button" href="https://www.google.com/maps/search/3523-1+Fujikawaguchiko" target="_blank" style="background-color: #2d7a6e;">🗺 На карте</a>
+            <div class="hotel-address">📍 3523-1 Funatsu, Fujikawaguchiko, Minamitsuru District, Yamanashi 401-0301, Япония</div>
+            <div class="map-button-group">
+                <a class="map-button google" href="https://www.google.com/maps/search/3523-1+Funatsu,+Fujikawaguchiko,+Minamitsuru+District,+Yamanashi+401-0301" target="_blank">🗺 Google Maps</a>
+                <a class="map-button mapsme" href="mapsme://search?query=3523-1%20Funatsu%2C%20Fujikawaguchiko%2C%20Minamitsuru%20District%2C%20Yamanashi" target="_blank">🗺 Maps.me</a>
                 <a class="map-button" href="https://www.booking.com/Share-clpy9hJ" target="_blank" style="background-color: #003580;">🔗 Booking.com</a>
             </div>
         </div>
 
         <div class="hotel-card">
-            <div class="hotel-name">🗼 Ryan inn 99平米 戸建貸切 JR東十条駅徒歩3分</div>
+            <div class="hotel-name">🗼 Ryan inn 99</div>
             <div class="hotel-dates">📅 20 мая (заезд 15:00–22:00) – 25 мая (выезд 10:00) · 5 ночей</div>
-            <div class="hotel-address">📍 グレイスハイム東十条２, Токио</div>
-            <div style="margin-top: 10px;">
-                <span class="booking-ref">JR Higashi-Jujo · 3 мин пешком</span>
-                <span class="booking-ref" style="margin-left: 10px;">99 м² · весь дом</span>
-            </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
-                <a class="map-button" href="https://www.google.com/maps/search/グレイスハイム東十条２+Tokyo" target="_blank" style="background-color: #b03e3e;">🗺 На карте</a>
+            <div class="hotel-address">📍 2-chōme-8 Nakajūjō, Kita City, Tokyo 114-0032, Япония</div>
+            <div class="map-button-group">
+                <a class="map-button google" href="https://www.google.com/maps/search/2-ch%C5%8Dme-8+Nakaj%C5%ABj%C5%8D,+Kita+City,+Tokyo+114-0032" target="_blank">🗺 Google Maps</a>
+                <a class="map-button mapsme" href="mapsme://search?query=2-ch%C5%8Dme-8%20Nakaj%C5%ABj%C5%8D%2C%20Kita%20City%2C%20Tokyo" target="_blank">🗺 Maps.me</a>
                 <a class="map-button" href="https://www.booking.com/Share-lQHXfZX" target="_blank" style="background-color: #003580;">🔗 Booking.com</a>
             </div>
         </div>
@@ -319,12 +304,9 @@
             <div class="hotel-name">🏙 Ramada Plaza Shanghai Pudong Airport ⭐⭐⭐⭐</div>
             <div class="hotel-dates">📅 25 мая (заезд после 16:15) – 26 мая (выезд 7:30) · 1 ночь</div>
             <div class="hotel-address">📍 1100 Qi Hang Road, Pudong Airport, Шанхай</div>
-            <div style="margin-top: 10px;">
-                <span class="booking-ref">рядом с аэропортом PVG</span>
-                <span class="booking-ref" style="margin-left: 10px;">4 звезды</span>
-            </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
-                <a class="map-button" href="https://www.google.com/maps/search/1100+Qi+Hang+Road+Shanghai" target="_blank" style="background-color: #2d7a6e;">🗺 На карте</a>
+            <div class="map-button-group">
+                <a class="map-button google" href="https://www.google.com/maps/search/1100+Qi+Hang+Road+Shanghai" target="_blank">🗺 Google Maps</a>
+                <a class="map-button mapsme" href="mapsme://search?query=1100%20Qi%20Hang%20Road%20Shanghai" target="_blank">🗺 Maps.me</a>
                 <a class="map-button" href="https://www.booking.com/Share-8FxhAs" target="_blank" style="background-color: #003580;">🔗 Booking.com</a>
             </div>
         </div>
@@ -336,8 +318,7 @@
         </div>
 
         <div class="footer">
-            <p>Москва → Шанхай → Осака + Киото + Нара → Мисима (проездом) + Фудзикавагутико + Хаконе → Токио + Камакура + Эносима → Шанхай → Москва</p>
-            <p style="font-size: 0.9rem; color: #8b7a6a;">11–26 мая 2026 · 6 гайдзинов · 10 городов</p>
+            <p>11–26 мая 2026 · 6 гайдзинов · 10 городов</p>
         </div>
     </div>
 
@@ -368,4 +349,4 @@
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
 </body>
-</html>
+                                            </html>
