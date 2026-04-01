@@ -164,6 +164,8 @@
                 <li><a href="budget.html">💰 Общий бюджет</a></li>
                 <li><a href="toilet-map.html">🚽 Карта туалетов</a></li>
                 <li><a href="visa.html" class="active">🛂 Всё для визы</a></li>
+                <li><a href="contacts.html">📞 Контакты</a></li>
+                <li><a href="glossary.html">📖 Глоссарий</a></li>
             </ul>
         </div>
 
@@ -241,7 +243,7 @@
         <div class="table-wrap">
             <table>
                 <thead>
-                    <tr><th>Категория</th><th>Документы</th> </tr>
+                    <tr><th>Категория</th><th>Документы</th></tr>
                 </thead>
                 <tbody>
                     <tr><td>Трудоустроенный</td><td>Оригинал справки с места работы (должность, оклад, печать)</td></tr>
@@ -335,26 +337,18 @@
             const key = `visa_checklist_${cb.parentElement.textContent.trim()}`;
             const saved = localStorage.getItem(key);
             if (saved === 'true') cb.checked = true;
-            
             cb.addEventListener('change', () => {
                 localStorage.setItem(key, cb.checked);
             });
         });
         
-        // Подсчёт выполненных пунктов
         function updateVisaProgress() {
             const checkboxes = document.querySelectorAll('.visa-check');
             const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
             const total = checkboxes.length;
-            
-            // Можно добавить индикатор прогресса, если нужно
             console.log(`Готовность документов: ${checked}/${total}`);
         }
-        
-        // Обновляем при изменении
-        document.querySelectorAll('.visa-check').forEach(cb => {
-            cb.addEventListener('change', updateVisaProgress);
-        });
+        document.querySelectorAll('.visa-check').forEach(cb => cb.addEventListener('change', updateVisaProgress));
         updateVisaProgress();
     </script>
 </body>
