@@ -228,6 +228,8 @@
                 <li><a href="budget.html">💰 Общий бюджет</a></li>
                 <li><a href="toilet-map.html" class="active">🚽 Карта туалетов</a></li>
                 <li><a href="visa.html">🛂 Всё для визы</a></li>
+                <li><a href="contacts.html">📞 Контакты</a></li>
+                <li><a href="glossary.html">📖 Глоссарий</a></li>
             </ul>
         </div>
 
@@ -272,7 +274,6 @@
                 <span class="city-badge">✅ Киото</span>
                 <span class="city-badge">✅ Токио</span>
                 <span class="city-badge">✅ Нара</span>
-                <span class="city-badge">✅ Кобе</span>
                 <span class="city-badge">✅ Камакура</span>
                 <span class="city-badge">✅ Фудзи</span>
                 <span class="city-badge yahoo">✅ Yahoo! Карты</span>
@@ -380,12 +381,10 @@
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
     <script>
-        // Сохранение состояния чек-листов в localStorage
         document.querySelectorAll('.checklist-item').forEach(cb => {
             const key = `checklist_toilet_${cb.parentElement.textContent.trim()}`;
             const saved = localStorage.getItem(key);
             if (saved === 'true') cb.checked = true;
-            
             cb.addEventListener('change', () => {
                 localStorage.setItem(key, cb.checked);
             });
