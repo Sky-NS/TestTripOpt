@@ -125,6 +125,64 @@
             background: #f9f7f4;
             border-radius: 12px;
         }
+                /* Таймер */
+        .timer-container {
+            background: #f9f7f4;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid #efebe5;
+        }
+        .timer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #b03e3e;
+            margin-bottom: 15px;
+        }
+        .timer-box {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .timer-unit {
+            background: white;
+            border-radius: 16px;
+            padding: 10px 15px;
+            min-width: 70px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .timer-unit span:first-child {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+        .timer-unit span:last-child {
+            font-size: 0.8rem;
+            color: #6b5a4a;
+            text-transform: uppercase;
+        }
+        .timer-status {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #2d7a6e;
+            font-weight: 500;
+        }
+        @media (max-width: 600px) {
+            .timer-box {
+                gap: 12px;
+            }
+            .timer-unit {
+                min-width: 55px;
+                padding: 6px 10px;
+            }
+            .timer-unit span:first-child {
+                font-size: 1.4rem;
+            }
+        }
         .progress-labels {
             display: flex;
             justify-content: space-between;
@@ -210,6 +268,18 @@
                 <div class="progress-bar-fill" id="trip-progress"></div>
             </div>
             <div class="progress-text" id="progress-text"></div>
+        </div>
+
+        <!-- Таймер до поездки -->
+        <div class="timer-container">
+            <div class="timer-title">⏳ Обратный отсчёт</div>
+            <div class="timer-box" id="trip-timer">
+                <div class="timer-unit"><span id="days">00</span><span>дней</span></div>
+                <div class="timer-unit"><span id="hours">00</span><span>часов</span></div>
+                <div class="timer-unit"><span id="minutes">00</span><span>минут</span></div>
+                <div class="timer-unit"><span id="seconds">00</span><span>секунд</span></div>
+            </div>
+            <div class="timer-status" id="timer-status"></div>
         </div>
 
         <h2>✈️ Оля-Никита-Ваня</h2>
@@ -368,6 +438,52 @@
             }
         }
         updateProgress();
+                // Таймер до поездки
+        function updateTimer() {
+            const startDate = new Date(2026, 4, 11); // 11 мая 2026 (месяцы с 0)
+            const endDate = new Date(2026, 4, 26);   // 26 мая 2026
+            const now = new Date();
+        
+            let targetDate, statusText;
+            if (now < startDate) {
+                targetDate = startDate;
+                statusText = '⏰ До начала путешествия';
+            } else if (now >= startDate && now <= endDate) {
+                targetDate = endDate;
+                statusText = '🧳 Путешествие началось! Осталось до возвращения:';
+            } else {
+                // Если поездка уже закончилась
+                document.getElementById('trip-timer').innerHTML = '<div class="timer-unit">🎉 Поездка завершена!</div>';
+                document.getElementById('timer-status').textContent = 'Спасибо за воспоминания!';
+                return;
+            }
+        
+            const diff = targetDate - now;
+            if (diff <= 0) {
+                // Небольшая защита от отрицательного времени
+                if (now >= startDate && now <= endDate) {
+                    document.getElementById('timer-status').textContent = '🧳 Путешествие в самом разгаре!';
+                } else {
+                    document.getElementById('timer-status').textContent = '🎉 Поездка завершена!';
+                }
+                return;
+            }
+        
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (86400000)) / (3600000));
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+        
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            document.getElementById('timer-status').textContent = statusText;
+        }
+        
+        // Запускаем таймер каждую секунду
+        setInterval(updateTimer, 1000);
+        updateTimer(); // сразу отобразить
     </script>
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
