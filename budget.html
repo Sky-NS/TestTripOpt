@@ -93,28 +93,13 @@
             background-color: #8c2e2e;
         }
         
-        .quick-nav {
-            background: #f5f2eb;
-            padding: 12px 20px;
-            border-radius: 40px;
+        .currency-note {
+            background-color: #fff9e6;
+            border-left: 4px solid #f0b400;
+            padding: 10px 15px;
+            border-radius: 8px;
             margin: 20px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-        }
-        .quick-nav a {
-            text-decoration: none;
-            color: #2d2d2d;
-            font-weight: 500;
-            padding: 5px 12px;
-            border-radius: 20px;
-            transition: all 0.2s;
-        }
-        .quick-nav a:hover {
-            background-color: #b03e3e;
-            color: white;
+            font-size: 0.9rem;
         }
         
         @media (max-width: 768px) {
@@ -136,15 +121,6 @@
             .budget-table th, .budget-table td {
                 padding: 6px 8px;
             }
-        }
-        
-        .currency-note {
-            background-color: #fff9e6;
-            border-left: 4px solid #f0b400;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -171,13 +147,6 @@
 
         <h1>💰 Общий бюджет путешествия</h1>
         <p style="text-align: center; color: #6b5a4a;">Группа из 6 человек • 11–26 мая 2026</p>
-
-        <!-- Быстрая навигация -->
-        <div class="quick-nav">
-            <strong style="color: #b03e3e;">📊 Перейти к:</strong>
-            <a href="#daily">Расходы по дням</a>
-            <a href="#summary">Общий бюджет</a>
-        </div>
 
         <!-- Панель управления курсами -->
         <div class="currency-control">
@@ -254,8 +223,8 @@
                 <tr><td>Токио</td><td id="tokyo-min">–</td><td id="tokyo-max">–</td></tr>
                 <tr><td>Шанхай (сценарий А)</td><td id="shanghai-a-min">–</td><td id="shanghai-a-max">–</td></tr>
                 <tr><td>Шанхай (сценарий Б)</td><td id="shanghai-b-min">–</td><td id="shanghai-b-max">–</td></tr>
-                <tr class="grand-total"><td><strong>ВСЕГО (сценарий А)</strong></td><td id="total-a-min">–</td><td id="total-a-max">–</td></tr>
-                <tr class="grand-total"><td><strong>ВСЕГО (сценарий Б)</strong></td><td id="total-b-min">–</td><td id="total-b-max">–</td></tr>
+                <tr class="grand-tourist"><td><strong>ВСЕГО (сценарий А)</strong></td><td id="total-a-min">–</td><td id="total-a-max">–</td></tr>
+                <tr class="grand-tourist"><td><strong>ВСЕГО (сценарий Б)</strong></td><td id="total-b-min">–</td><td id="total-b-max">–</td></tr>
             </tbody>
         </table>
 
@@ -369,4 +338,4 @@
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
 </body>
-</html>
+            </html>
