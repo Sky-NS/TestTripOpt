@@ -62,7 +62,7 @@ body {
 /* Основной контейнер */
 .trip-card {
     max-width: 1000px;
-    min-width: 600px;
+    /* min-width: 600px; (минималка)*/
     margin: 0 auto;
     background-color: var(--bg-card);
     border-radius: 12px;
