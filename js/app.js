@@ -6,12 +6,8 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('ServiceWorker registration successful');
-            })
-            .catch(err => {
-                console.log('ServiceWorker registration failed: ', err);
-            });
+            .then(registration => console.log('ServiceWorker registered'))
+            .catch(err => console.log('ServiceWorker error:', err));
     });
 }
 
@@ -23,7 +19,7 @@ function initBackToTop() {
     btn.setAttribute('aria-label', 'Наверх');
     btn.style.cssText = `
         position: fixed;
-        bottom: 80px;
+        bottom: 20px;
         right: 20px;
         width: 50px;
         height: 50px;
@@ -41,7 +37,6 @@ function initBackToTop() {
         align-items: center;
         justify-content: center;
     `;
-    
     btn.onmouseenter = () => {
         btn.style.backgroundColor = 'rgba(176, 62, 62, 1)';
         btn.style.transform = 'scale(1.05)';
@@ -50,35 +45,20 @@ function initBackToTop() {
         btn.style.backgroundColor = 'rgba(176, 62, 62, 0.7)';
         btn.style.transform = 'scale(1)';
     };
-    
-    btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     document.body.appendChild(btn);
-    
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            btn.style.display = 'flex';
-        } else {
-            btn.style.display = 'none';
-        }
+        btn.style.display = window.scrollY > 100 ? 'flex' : 'none';
     });
 }
 
-// Сохранение курсов в localStorage для budget.html
+// Сохранение курсов в localStorage
 function saveRatesToLocalStorage() {
     const jpyRate = document.getElementById('jpyRate');
     const cnyRate = document.getElementById('cnyRate');
-    
     if (jpyRate && cnyRate) {
-        jpyRate.addEventListener('change', () => {
-            localStorage.setItem('userJpyRate', jpyRate.value);
-        });
-        cnyRate.addEventListener('change', () => {
-            localStorage.setItem('userCnyRate', cnyRate.value);
-        });
-        
+        jpyRate.addEventListener('change', () => localStorage.setItem('userJpyRate', jpyRate.value));
+        cnyRate.addEventListener('change', () => localStorage.setItem('userCnyRate', cnyRate.value));
         const savedJpy = localStorage.getItem('userJpyRate');
         const savedCny = localStorage.getItem('userCnyRate');
         if (savedJpy) jpyRate.value = savedJpy;
@@ -86,11 +66,9 @@ function saveRatesToLocalStorage() {
     }
 }
 
-// Сворачиваемые блоки для длинных списков
+// Сворачиваемые блоки
 function initCollapsibleBlocks() {
-    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-    
-    collapsibleHeaders.forEach(header => {
+    document.querySelectorAll('.collapsible-header').forEach(header => {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
             const isExpanded = header.getAttribute('aria-expanded') === 'true';
@@ -100,42 +78,32 @@ function initCollapsibleBlocks() {
     });
 }
 
-// Добавление индикатора загрузки курсов
+// Индикатор загрузки курсов
 function addRateLoadingIndicator() {
-    const ratePlaceholders = document.querySelectorAll('#exchangeRatePlaceholder');
-    ratePlaceholders.forEach(el => {
+    document.querySelectorAll('#exchangeRatePlaceholder').forEach(el => {
         if (el.textContent === 'загрузка...') {
             const loadingSpan = document.createElement('span');
             loadingSpan.textContent = '🔄';
-            loadingSpan.style.display = 'inline-block';
-            loadingSpan.style.animation = 'spin 1s linear infinite';
+            loadingSpan.style.cssText = 'display:inline-block; animation:spin 1s linear infinite';
             el.textContent = '';
             el.appendChild(loadingSpan);
         }
     });
 }
+const spinStyle = document.createElement('style');
+spinStyle.textContent = '@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+document.head.appendChild(spinStyle);
 
-// Анимация спиннера
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-`;
-document.head.appendChild(style);
-
-// ===== ПЕРЕКЛЮЧЕНИЕ ТЁМНОЙ/СВЕТЛОЙ ТЕМЫ =====
+// ===== КНОПКА СМЕНЫ ТЕМЫ (слева вверху) =====
 let themeBtn = null;
-
 function initThemeToggle() {
     themeBtn = document.createElement('button');
     themeBtn.id = 'theme-toggle';
     themeBtn.setAttribute('aria-label', 'Переключить тему');
     themeBtn.style.cssText = `
         position: fixed;
-        bottom: 140px;
-        right: 20px;
+        top: 20px;
+        left: 20px;
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -145,14 +113,13 @@ function initThemeToggle() {
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
-        z-index: 1000;
+        z-index: 1001;
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         transition: all 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
     `;
-    
     themeBtn.onmouseenter = () => {
         themeBtn.style.backgroundColor = 'rgba(176, 62, 62, 1)';
         themeBtn.style.transform = 'scale(1.05)';
@@ -161,9 +128,7 @@ function initThemeToggle() {
         themeBtn.style.backgroundColor = 'rgba(176, 62, 62, 0.7)';
         themeBtn.style.transform = 'scale(1)';
     };
-    
     document.body.appendChild(themeBtn);
-
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
@@ -171,7 +136,6 @@ function initThemeToggle() {
     } else {
         themeBtn.innerHTML = '🌙';
     }
-
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
@@ -180,19 +144,19 @@ function initThemeToggle() {
     });
 }
 
-// ===== ПЛАВАЮЩАЯ КНОПКА БУРГЕР-МЕНЮ (всегда видна, открывает плавающее меню) =====
+// ===== ПЛАВАЮЩАЯ КНОПКА БУРГЕР-МЕНЮ (справа вверху) =====
 let floatingMenuBtn = null;
 let floatingMenuPanel = null;
 
 function initFloatingMenuButton() {
-    // Создаём кнопку
+    // Кнопка меню
     floatingMenuBtn = document.createElement('button');
     floatingMenuBtn.id = 'floating-menu-btn';
     floatingMenuBtn.setAttribute('aria-label', 'Меню');
     floatingMenuBtn.innerHTML = '☰';
     floatingMenuBtn.style.cssText = `
         position: fixed;
-        bottom: 200px;
+        top: 20px;
         right: 20px;
         width: 50px;
         height: 50px;
@@ -211,7 +175,6 @@ function initFloatingMenuButton() {
         align-items: center;
         justify-content: center;
     `;
-    
     floatingMenuBtn.onmouseenter = () => {
         floatingMenuBtn.style.backgroundColor = 'rgba(176, 62, 62, 1)';
         floatingMenuBtn.style.transform = 'scale(1.05)';
@@ -220,15 +183,14 @@ function initFloatingMenuButton() {
         floatingMenuBtn.style.backgroundColor = 'rgba(176, 62, 62, 0.7)';
         floatingMenuBtn.style.transform = 'scale(1)';
     };
-    
     document.body.appendChild(floatingMenuBtn);
     
-    // Создаём плавающую панель меню (стили через CSS, без жёсткого фона)
+    // Панель меню (выпадает вниз)
     floatingMenuPanel = document.createElement('div');
     floatingMenuPanel.id = 'floating-menu-panel';
     floatingMenuPanel.style.cssText = `
         position: fixed;
-        bottom: 260px;
+        top: 80px;
         right: 20px;
         border-radius: 16px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.15);
@@ -252,10 +214,8 @@ function initFloatingMenuButton() {
             floatingMenuPanel.appendChild(newLink);
         });
     }
-    
     document.body.appendChild(floatingMenuPanel);
     
-    // Открытие/закрытие меню по клику на кнопку
     let isMenuOpen = false;
     floatingMenuBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -268,7 +228,6 @@ function initFloatingMenuButton() {
         }
     });
     
-    // Закрытие меню при клике вне его
     document.addEventListener('click', (e) => {
         if (isMenuOpen && !floatingMenuPanel.contains(e.target) && e.target !== floatingMenuBtn) {
             floatingMenuPanel.style.display = 'none';
@@ -277,7 +236,7 @@ function initFloatingMenuButton() {
     });
 }
 
-// Инициализация всех компонентов
+// Инициализация
 document.addEventListener('DOMContentLoaded', () => {
     initBackToTop();
     saveRatesToLocalStorage();
