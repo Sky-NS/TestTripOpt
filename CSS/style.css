@@ -1,0 +1,541 @@
+/* ===== ЯПОНСКИЙ МИНИМАЛИЗМ с поддержкой тёмной темы ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+
+/* ===== ПЕРЕМЕННЫЕ СВЕТЛОЙ ТЕМЫ (по умолчанию) ===== */
+:root {
+    --bg-body: #faf8f5;
+    --bg-card: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --text-muted: #6b5a4a;
+    --border-light: #efebe5;
+    --card-hover: #f9f7f4;
+    --accent-red: #b03e3e;
+    --accent-red-hover: #8c2e2e;
+    --accent-teal: #2d7a6e;
+    --accent-teal-hover: #1f5a4e;
+    --accent-blue: #4285F4;
+    --accent-blue-hover: #2a56c6;
+    --accent-green: #2C9E4C;
+    --accent-green-hover: #1f7137;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.03);
+    --transition: all 0.2s ease;
+}
+
+/* ===== ТЁМНАЯ ТЕМА ===== */
+body.dark-mode {
+    --bg-body: #121212;
+    --bg-card: #1e1e1e;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #a0a0a0;
+    --border-light: #333333;
+    --card-hover: #2a2a2a;
+    --accent-red: #d96c6c;
+    --accent-red-hover: #b04a4a;
+    --accent-teal: #4aa393;
+    --accent-teal-hover: #3a8274;
+    --accent-blue: #5c9eff;
+    --accent-blue-hover: #3a7bdd;
+    --accent-green: #4cae6e;
+    --accent-green-hover: #3a8a54;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 400;
+    transition: background-color 0.3s, color 0.2s;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Основной контейнер */
+.trip-card {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    padding: 35px;
+    border: 1px solid var(--border-light);
+    transition: background-color 0.3s, border-color 0.2s;
+}
+
+/* Заголовки */
+h1, h2, h3, h4 {
+    color: var(--text-primary);
+    transition: color 0.2s;
+}
+h1 {
+    text-align: center;
+    margin: 10px 0 20px;
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    border-left: 4px solid var(--accent-red);
+    padding-left: 15px;
+}
+h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 20px 0 10px;
+}
+
+/* Ссылки */
+a {
+    color: var(--accent-teal);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Кнопки карт и общие кнопки */
+.map-button {
+    display: inline-block;
+    background-color: #2d2d2d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    margin: 10px 0;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+.map-button:hover {
+    background-color: var(--accent-red);
+    transform: translateY(-1px);
+}
+.map-button.google {
+    background-color: var(--accent-blue);
+}
+.map-button.google:hover {
+    background-color: var(--accent-blue-hover);
+}
+.map-button.mapsme {
+    background-color: var(--accent-green);
+}
+.map-button.mapsme:hover {
+    background-color: var(--accent-green-hover);
+}
+.nav-button, .apply-button {
+    background-color: var(--accent-red);
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+.apply-button:hover, .nav-button:hover {
+    background-color: var(--accent-red-hover);
+}
+
+/* Карточки */
+.place-card, .hotel-card, .attraction-card, .visa-card, .contact-card, .app-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    transition: var(--transition);
+}
+.place-card:hover, .hotel-card:hover, .attraction-card:hover, .visa-card:hover, .contact-card:hover, .app-card:hover {
+    border-color: var(--accent-red);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+.price-info, .transport-note, .bus-schedule, .locker-info, .route-card {
+    background-color: var(--card-hover);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+    color: var(--text-secondary);
+}
+.tip, .weather-note, .evening-plan, .morning-plan, .currency-note, .geolocation-note {
+    background-color: var(--card-hover);
+    border-left: 4px solid var(--accent-red);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* Таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    font-size: 0.95rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+}
+th {
+    background-color: var(--card-hover);
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-light);
+}
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-light);
+}
+tr:last-child td {
+    border-bottom: none;
+}
+tr:hover {
+    background-color: var(--card-hover);
+}
+
+/* Подвал */
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+    padding-top: 25px;
+    font-size: 0.95rem;
+}
+
+/* Бургер-меню */
+.burger-menu {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    z-index: 100;
+}
+#menu-toggle {
+    display: none;
+}
+.menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-red);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.menu-btn:hover {
+    background-color: var(--accent-red-hover);
+}
+.menu-btn span,
+.menu-btn span::before,
+.menu-btn span::after {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: 0.3s;
+    position: relative;
+}
+.menu-btn span::before {
+    content: '';
+    top: -8px;
+    position: absolute;
+}
+.menu-btn span::after {
+    content: '';
+    top: 8px;
+    position: absolute;
+}
+#menu-toggle:checked + .menu-btn span {
+    background: transparent;
+}
+#menu-toggle:checked + .menu-btn span::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+#menu-toggle:checked + .menu-btn span::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+.menu-box {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 10px 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: 0.3s;
+    z-index: 99;
+}
+#menu-toggle:checked ~ .menu-box {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.menu-box li {
+    margin: 0;
+    padding: 0;
+}
+.menu-box a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+.menu-box a:hover {
+    background-color: var(--card-hover);
+}
+.menu-box a.active {
+    background-color: var(--accent-red);
+    color: white;
+}
+
+/* Специфичные компоненты */
+.city-badge, .attraction-badge, .badge {
+    display: inline-block;
+    background-color: var(--accent-red);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.city-total {
+    background-color: var(--card-hover);
+    font-weight: 700;
+}
+.grand-total {
+    background-color: var(--accent-teal);
+    color: white;
+}
+.grand-total td {
+    color: white;
+}
+.total-day {
+    background-color: var(--accent-red);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+.currency-control {
+    background-color: var(--card-hover);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.currency-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-card);
+    padding: 8px 15px;
+    border-radius: 40px;
+    border: 1px solid var(--border-light);
+}
+.progress-container {
+    background: var(--card-hover);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 30px 0;
+}
+.progress-bar-bg {
+    background: var(--border-light);
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    background: var(--accent-red);
+    height: 100%;
+    transition: width 0.3s;
+}
+.map-button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.timeline-item {
+    display: flex;
+    margin: 10px 0;
+    align-items: flex-start;
+}
+.timeline-time {
+    min-width: 100px;
+    font-weight: 600;
+    color: var(--accent-teal);
+}
+.flight-badge, .hotel-info, .info-box {
+    background-color: var(--card-hover);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 4px solid var(--accent-teal);
+}
+.checklist-block {
+    background-color: var(--card-hover);
+    border-left: 4px solid var(--accent-teal);
+}
+.checklist-block ul {
+    columns: 2;
+    margin: 0;
+}
+.booking-ref {
+    font-family: 'Inter', monospace;
+    background-color: var(--card-hover);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-light);
+}
+.collapsible-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-hover);
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 0;
+}
+.collapsible-header:hover {
+    background-color: var(--border-light);
+}
+.collapsible-content {
+    display: block;
+    padding-top: 15px;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .trip-card {
+        padding: 15px !important;
+    }
+    h1 {
+        font-size: 2rem !important;
+    }
+    h2 {
+        font-size: 1.4rem !important;
+        padding-left: 10px !important;
+    }
+    .city-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+    .city-card {
+        padding: 10px 6px !important;
+    }
+    .city-icon {
+        font-size: 2.2rem !important;
+    }
+    .city-name {
+        font-size: 1rem !important;
+    }
+    .city-dates {
+        font-size: 0.7rem !important;
+    }
+    .flight-row {
+        font-size: 0.75rem !important;
+        flex-wrap: wrap !important;
+    }
+    .hotel-card, .attraction-card {
+        padding: 10px !important;
+    }
+    .day-highlight {
+        padding: 12px !important;
+        margin: 12px 0 !important;
+    }
+    .day-highlight h3 {
+        font-size: 1.1rem !important;
+    }
+    .timeline-time {
+        min-width: 60px !important;
+        font-size: 0.75rem !important;
+    }
+    .timeline-desc {
+        font-size: 0.75rem !important;
+    }
+    table {
+        font-size: 0.7rem !important;
+    }
+    th, td {
+        padding: 4px 6px !important;
+    }
+    .tip, .weather-note, .evening-plan, .morning-plan {
+        padding: 10px !important;
+        font-size: 0.8rem !important;
+    }
+    .map-button {
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+    }
+    .price-info {
+        padding: 8px 10px !important;
+    }
+    .checklist-block ul {
+        columns: 1;
+    }
+    .total-day {
+        flex-wrap: wrap !important;
+        font-size: 0.85rem !important;
+    }
+    .route-detail {
+        flex-wrap: wrap !important;
+        gap: 2px !important;
+    }
+    .route-detail span:first-child {
+        width: 60% !important;
+    }
+    .route-detail span:last-child {
+        width: 38% !important;
+        text-align: right !important;
+    }
+    .menu-box {
+        width: 180px;
+    }
+}
