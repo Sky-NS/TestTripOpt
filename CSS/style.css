@@ -282,7 +282,7 @@ tr:hover {
 }
 
 /* ===== ПЛОТНАЯ МОБИЛЬНАЯ ВЕРСИЯ ===== */
-@media (max-width: 768px) {
+@media (max-width: 868px) {
     body {
         padding: 10px;
     }
