@@ -113,10 +113,12 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ===== ПЕРЕКЛЮЧЕНИЕ ТЁМНОЙ/СВЕТЛОЙ ТЕМЫ =====
+// ===== ПЕРЕКЛЮЧЕНИЕ ТЁМНОЙ/СВЕТЛОЙ ТЕМЫ (ПОЛУПРОЗРАЧНАЯ КНОПКА) =====
+let themeBtn = null;
+
 function initThemeToggle() {
-    // Создаём плавающую кнопку переключения темы
-    const themeBtn = document.createElement('button');
+    // Создаём плавающую кнопку с полупрозрачным фоном
+    themeBtn = document.createElement('button');
     themeBtn.id = 'theme-toggle';
     themeBtn.setAttribute('aria-label', 'Переключить тему');
     themeBtn.style.cssText = `
@@ -126,7 +128,8 @@ function initThemeToggle() {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background-color: var(--accent-red, #b03e3e);
+        background-color: rgba(176, 62, 62, 0.7);
+        backdrop-filter: blur(4px);
         color: white;
         border: none;
         font-size: 1.5rem;
@@ -138,8 +141,17 @@ function initThemeToggle() {
         align-items: center;
         justify-content: center;
     `;
-    themeBtn.onmouseenter = () => themeBtn.style.transform = 'scale(1.05)';
-    themeBtn.onmouseleave = () => themeBtn.style.transform = 'scale(1)';
+    
+    // При наведении делаем непрозрачной
+    themeBtn.onmouseenter = () => {
+        themeBtn.style.backgroundColor = 'rgba(176, 62, 62, 1)';
+        themeBtn.style.transform = 'scale(1.05)';
+    };
+    themeBtn.onmouseleave = () => {
+        themeBtn.style.backgroundColor = 'rgba(176, 62, 62, 0.7)';
+        themeBtn.style.transform = 'scale(1)';
+    };
+    
     document.body.appendChild(themeBtn);
 
     // Загрузка сохранённой темы
@@ -166,5 +178,5 @@ document.addEventListener('DOMContentLoaded', () => {
     saveRatesToLocalStorage();
     initCollapsibleBlocks();
     addRateLoadingIndicator();
-    initThemeToggle();  // добавлен переключатель темы
+    initThemeToggle();
 });
