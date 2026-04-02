@@ -67,7 +67,6 @@ function saveRatesToLocalStorage() {
             localStorage.setItem('userCnyRate', cnyRate.value);
         });
         
-        // Восстановление сохранённых значений
         const savedJpy = localStorage.getItem('userJpyRate');
         const savedCny = localStorage.getItem('userCnyRate');
         if (savedJpy) jpyRate.value = savedJpy;
@@ -83,7 +82,6 @@ function initCollapsibleBlocks() {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
             const isExpanded = header.getAttribute('aria-expanded') === 'true';
-            
             header.setAttribute('aria-expanded', !isExpanded);
             content.style.display = isExpanded ? 'none' : 'block';
         });
@@ -105,7 +103,7 @@ function addRateLoadingIndicator() {
     });
 }
 
-// Добавляем анимацию спиннера
+// Анимация спиннера
 const style = document.createElement('style');
 style.textContent = `
     @keyframes spin {
@@ -115,10 +113,58 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Инициализация при загрузке страницы
+// ===== ПЕРЕКЛЮЧЕНИЕ ТЁМНОЙ/СВЕТЛОЙ ТЕМЫ =====
+function initThemeToggle() {
+    // Создаём плавающую кнопку переключения темы
+    const themeBtn = document.createElement('button');
+    themeBtn.id = 'theme-toggle';
+    themeBtn.setAttribute('aria-label', 'Переключить тему');
+    themeBtn.style.cssText = `
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--accent-red, #b03e3e);
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
+    themeBtn.onmouseenter = () => themeBtn.style.transform = 'scale(1.05)';
+    themeBtn.onmouseleave = () => themeBtn.style.transform = 'scale(1)';
+    document.body.appendChild(themeBtn);
+
+    // Загрузка сохранённой темы
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeBtn.innerHTML = '☀️';
+    } else {
+        themeBtn.innerHTML = '🌙';
+    }
+
+    // Обработчик клика
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        themeBtn.innerHTML = isDark ? '☀️' : '🌙';
+    });
+}
+
+// Инициализация всех компонентов при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     initBackToTop();
     saveRatesToLocalStorage();
     initCollapsibleBlocks();
     addRateLoadingIndicator();
+    initThemeToggle();  // добавлен переключатель темы
 });
