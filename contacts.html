@@ -77,36 +77,23 @@
             font-family: 'Noto Sans JP', monospace;
             font-size: 1rem;
         }
-        .quick-nav {
-            background: #f5f2eb;
-            padding: 12px 20px;
-            border-radius: 40px;
-            margin: 20px 0;
+        .map-button-group {
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
-            justify-content: center;
-            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
         }
-        .quick-nav a {
-            text-decoration: none;
-            color: #2d2d2d;
-            font-weight: 500;
-            padding: 5px 12px;
-            border-radius: 20px;
-            transition: all 0.2s;
+        .map-button.google {
+            background-color: #4285F4;
         }
-        .quick-nav a:hover {
-            background-color: #b03e3e;
-            color: white;
+        .map-button.google:hover {
+            background-color: #2a56c6;
         }
-        .currency-note {
-            background-color: #fff9e6;
-            border-left: 4px solid #f0b400;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-size: 0.9rem;
+        .map-button.mapsme {
+            background-color: #2C9E4C;
+        }
+        .map-button.mapsme:hover {
+            background-color: #1f7137;
         }
         @media (max-width: 768px) {
             .contacts-grid {
@@ -136,24 +123,12 @@
             </ul>
         </div>
 
-        <div class="currency-note">
-            <strong>💱 КУРС ВАЛЮТ (расчётный):</strong> <span id="exchangeRatePlaceholder">загрузка...</span>
-        </div>
-
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
             <span style="font-size: 4rem;">📞</span>
             <div>
                 <h1 style="text-align: left; margin: 0; font-size: 3rem;">Полезные контакты</h1>
                 <p style="color: #6b5a4a; margin: 5px 0 0; font-size: 1.2rem;">Экстренная помощь, посольства, отели и важные фразы</p>
             </div>
-        </div>
-
-        <div class="quick-nav">
-            <strong style="color: #b03e3e;">📌 Разделы:</strong>
-            <a href="#emergency">🚨 Экстренные номера</a>
-            <a href="#embassy">🏛️ Посольства РФ</a>
-            <a href="#hotels">🏨 Контакты отелей</a>
-            <a href="#phrases">🗣️ Важные фразы</a>
         </div>
 
         <!-- Экстренные номера -->
@@ -228,38 +203,50 @@
             <div class="contact-card hotel-contact">
                 <h3><span>🌆</span> Ebie House (Осака)</h3>
                 <ul>
-                    <li>📍 <strong>Адрес:</strong> 海老江3丁目6–19, Осака 553-0001</li>
+                    <li>📍 <strong>Адрес:</strong> chōme-6-19 Ebie, Fukushima Ward, Osaka, 553-0001, Япония</li>
                     <li>📞 <strong>Телефон:</strong> +81 90-1234-5678 (уточнить у хозяина через Booking)</li>
                     <li>🔗 <a href="https://www.booking.com/Share-FVKrDuX" target="_blank">Booking.com</a></li>
-                    <li>🗺 <a href="https://www.google.com/maps/search/海老江3丁目6–19+Ebie+House+Osaka" target="_blank">Показать на карте</a></li>
                 </ul>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/ch%C5%8Dme-6-19+Ebie,+Fukushima+Ward,+Osaka,+553-0001" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=ch%C5%8Dme-6-19%20Ebie%2C%20Fukushima%20Ward%2C%20Osaka" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="contact-card hotel-contact">
                 <h3><span>🗻</span> ID Stay Kawaguchiko</h3>
                 <ul>
-                    <li>📍 <strong>Адрес:</strong> 3523-1, Фудзикавагутико, Яманаси 401-0301</li>
+                    <li>📍 <strong>Адрес:</strong> 3523-1 Funatsu, Fujikawaguchiko, Minamitsuru District, Yamanashi 401-0301, Япония</li>
                     <li>📞 <strong>Телефон:</strong> +81 555-72-1234</li>
                     <li>🔗 <a href="https://www.booking.com/Share-clpy9hJ" target="_blank">Booking.com</a></li>
-                    <li>🗺 <a href="https://www.google.com/maps/search/3523-1+Fujikawaguchiko" target="_blank">Показать на карте</a></li>
                 </ul>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/3523-1+Funatsu,+Fujikawaguchiko,+Minamitsuru+District,+Yamanashi+401-0301" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=3523-1%20Funatsu%2C%20Fujikawaguchiko%2C%20Minamitsuru%20District%2C%20Yamanashi" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="contact-card hotel-contact">
-                <h3><span>🗼</span> Ryan inn (Токио)</h3>
+                <h3><span>🗼</span> Ryan inn 99 (Токио)</h3>
                 <ul>
-                    <li>📍 <strong>Адрес:</strong> グレイスハイム東十条２, Токио 114-0033</li>
+                    <li>📍 <strong>Адрес:</strong> 2-chōme-8 Nakajūjō, Kita City, Tokyo 114-0032, Япония</li>
                     <li>📞 <strong>Телефон:</strong> +81 3-1234-5678</li>
                     <li>🔗 <a href="https://www.booking.com/Share-lQHXfZX" target="_blank">Booking.com</a></li>
-                    <li>🗺 <a href="https://www.google.com/maps/search/グレイスハイム東十条２+Tokyo" target="_blank">Показать на карте</a></li>
                 </ul>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/2-ch%C5%8Dme-8+Nakaj%C5%ABj%C5%8D,+Kita+City,+Tokyo+114-0032" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=2-ch%C5%8Dme-8%20Nakaj%C5%ABj%C5%8D%2C%20Kita%20City%2C%20Tokyo" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
             <div class="contact-card hotel-contact">
                 <h3><span>🏙️</span> Ramada Plaza Shanghai Pudong Airport</h3>
                 <ul>
-                    <li>📍 <strong>Адрес:</strong> 1100 Qi Hang Road, Пудун, Шанхай 201207</li>
+                    <li>📍 <strong>Адрес:</strong> 1100 Qi Hang Road, Pudong Airport, Пудун, Шанхай, Китай</li>
                     <li>📞 <strong>Телефон:</strong> +86 21 3849 4888</li>
                     <li>🔗 <a href="https://www.booking.com/Share-8FxhAs" target="_blank">Booking.com</a></li>
-                    <li>🗺 <a href="https://www.google.com/maps/search/1100+Qi+Hang+Road+Shanghai" target="_blank">Показать на карте</a></li>
                 </ul>
+                <div class="map-button-group">
+                    <a class="map-button google" href="https://www.google.com/maps/search/1100+Qi+Hang+Road+Shanghai" target="_blank">🗺 Google Maps</a>
+                    <a class="map-button mapsme" href="mapsme://search?query=1100%20Qi%20Hang%20Road%20Shanghai" target="_blank">🗺 Maps.me</a>
+                </div>
             </div>
         </div>
 
