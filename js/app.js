@@ -223,14 +223,13 @@ function initFloatingMenuButton() {
     
     document.body.appendChild(floatingMenuBtn);
     
-    // Создаём плавающую панель меню
+    // Создаём плавающую панель меню (стили через CSS, без жёсткого фона)
     floatingMenuPanel = document.createElement('div');
     floatingMenuPanel.id = 'floating-menu-panel';
     floatingMenuPanel.style.cssText = `
         position: fixed;
         bottom: 260px;
         right: 20px;
-        background-color: var(--bg-card, white);
         border-radius: 16px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         padding: 12px 0;
@@ -239,9 +238,7 @@ function initFloatingMenuButton() {
         display: none;
         flex-direction: column;
         gap: 4px;
-        border: 1px solid var(--border-light, #efebe5);
         backdrop-filter: blur(8px);
-        background-color: rgba(30, 30, 30, 0.95);
     `;
     
     // Копируем ссылки из оригинального меню
@@ -252,21 +249,6 @@ function initFloatingMenuButton() {
             const newLink = document.createElement('a');
             newLink.href = link.href;
             newLink.textContent = link.textContent;
-            newLink.style.cssText = `
-                display: block;
-                padding: 10px 20px;
-                color: var(--text-primary, white);
-                text-decoration: none;
-                font-weight: 500;
-                transition: background 0.2s;
-                font-size: 0.95rem;
-            `;
-            newLink.onmouseenter = () => {
-                newLink.style.backgroundColor = 'rgba(176, 62, 62, 0.2)';
-            };
-            newLink.onmouseleave = () => {
-                newLink.style.backgroundColor = 'transparent';
-            };
             floatingMenuPanel.appendChild(newLink);
         });
     }
