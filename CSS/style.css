@@ -1137,4 +1137,72 @@ body.dark-mode .culture-tip {
     ul, ol { padding-left: 18px !important; margin: 4px 0 !important; }
     li { margin-bottom: 2px !important; }
     .booking-ref { font-size: 0.7rem !important; padding: 2px 6px !important; }
+    /* ===== СПЕЦИАЛЬНЫЕ ПРАВКИ ДЛЯ МОБИЛЬНЫХ (600px и меньше) ===== */
+@media (max-width: 600px) {
+    /* Таймер — в одну строку */
+    .timer-box {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 4px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+    .timer-unit {
+        flex: 1;
+        min-width: 50px;
+        padding: 6px 4px;
+        text-align: center;
+    }
+    .timer-unit span:first-child {
+        font-size: 1.2rem;
+        line-height: 1.2;
+    }
+    .timer-unit span:last-child {
+        font-size: 0.65rem;
+    }
+    .timer-title {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+    .timer-status {
+        font-size: 0.75rem;
+    }
+
+    /* Прогресс-бар — чтобы метки не переносились */
+    .progress-labels {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 4px;
+        overflow-x: auto;
+        font-size: 0.65rem;
+        padding-bottom: 4px;
+    }
+    .progress-labels span {
+        white-space: nowrap;
+    }
+    .progress-container {
+        padding: 12px;
+    }
+}
+
+/* Дополнительно для очень узких экранов (до 480px) — ещё компактнее */
+@media (max-width: 480px) {
+    .timer-unit {
+        min-width: 42px;
+        padding: 4px 2px;
+    }
+    .timer-unit span:first-child {
+        font-size: 1rem;
+    }
+    .timer-unit span:last-child {
+        font-size: 0.55rem;
+    }
+    .progress-labels {
+        font-size: 0.55rem;
+        gap: 2px;
+    }
+}
 }
