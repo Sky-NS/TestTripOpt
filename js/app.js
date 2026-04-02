@@ -167,11 +167,14 @@ function initThemeToggle() {
         themeBtn.innerHTML = isDark ? '☀️' : '🌙';
     });
 }
-// ===== ПЛАВАЮЩАЯ КНОПКА БУРГЕР-МЕНЮ (появляется при прокрутке > 200px на любых устройствах) =====
+
+// ===== ПЛАВАЮЩАЯ КНОПКА МЕНЮ И ПЛАВАЮЩЕЕ МЕНЮ =====
 let floatingMenuBtn = null;
+let floatingMenuPanel = null;
 let scrollTimeout = null;
 
 function initFloatingMenuButton() {
+    // Создаём плавающую кнопку меню (справа, над кнопкой темы)
     floatingMenuBtn = document.createElement('button');
     floatingMenuBtn.id = 'floating-menu-btn';
     floatingMenuBtn.setAttribute('aria-label', 'Меню');
@@ -179,7 +182,7 @@ function initFloatingMenuButton() {
     floatingMenuBtn.style.cssText = `
         position: fixed;
         bottom: 140px;
-        left: 20px;
+        right: 20px;
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -209,14 +212,90 @@ function initFloatingMenuButton() {
     
     document.body.appendChild(floatingMenuBtn);
     
+    // Создаём плавающую панель меню (изначально скрыта)
+    floatingMenuPanel = document.createElement('div');
+    floatingMenuPanel.id = 'floating-menu-panel';
+    floatingMenuPanel.style.cssText = `
+        position: fixed;
+        bottom: 200px;
+        right: 80px;
+        background-color: var(--bg-card, #fff);
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        padding: 10px 0;
+        min-width: 180px;
+        z-index: 1001;
+        display: none;
+        flex-direction: column;
+        border: 1px solid var(--border-light, #efebe5);
+        backdrop-filter: blur(8px);
+        background-color: rgba(255,255,255,0.95);
+        transition: opacity 0.2s;
+    `;
+    
+    // Добавляем ссылки меню (копируем из .menu-box)
+    const menuLinks = [
+        { href: "index.html", icon: "🏠", text: "Главная" },
+        { href: "osaka.html", icon: "🌆", text: "Осака" },
+        { href: "fuji.html", icon: "🗻", text: "Фудзи" },
+        { href: "tokyo.html", icon: "🗼", text: "Токио" },
+        { href: "shanghai.html", icon: "🏙", text: "Шанхай" },
+        { href: "budget.html", icon: "💰", text: "Общий бюджет" },
+        { href: "toilet-map.html", icon: "🚽", text: "Карта туалетов" },
+        { href: "visa.html", icon: "🛂", text: "Всё для визы" },
+        { href: "contacts.html", icon: "📞", text: "Контакты" },
+        { href: "glossary.html", icon: "📖", text: "Глоссарий" }
+    ];
+    
+    menuLinks.forEach(link => {
+        const a = document.createElement('a');
+        a.href = link.href;
+        a.innerHTML = `${link.icon} ${link.text}`;
+        a.style.cssText = `
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-primary, #1a1a1a);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        `;
+        a.addEventListener('mouseenter', () => {
+            a.style.backgroundColor = 'var(--card-hover, #f9f7f4)';
+        });
+        a.addEventListener('mouseleave', () => {
+            a.style.backgroundColor = 'transparent';
+        });
+        floatingMenuPanel.appendChild(a);
+    });
+    
+    document.body.appendChild(floatingMenuPanel);
+    
+    // Функция показа/скрытия кнопки при прокрутке (как у кнопки "Наверх")
     function toggleFloatingMenuButton() {
-        // Убираем проверку ширины экрана — кнопка появляется при прокрутке > 200px на любом устройстве
-        if (window.scrollY > 200) {
+        if (window.scrollY > 300) {
             floatingMenuBtn.style.display = 'flex';
         } else {
             floatingMenuBtn.style.display = 'none';
+            // Скрываем также панель меню, если она открыта
+            floatingMenuPanel.style.display = 'none';
         }
     }
+    
+    // Обработчик клика по кнопке: переключение видимости панели меню
+    floatingMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isVisible = floatingMenuPanel.style.display === 'flex';
+        floatingMenuPanel.style.display = isVisible ? 'none' : 'flex';
+    });
+    
+    // Закрываем панель при клике вне её
+    document.addEventListener('click', (e) => {
+        if (floatingMenuPanel && floatingMenuBtn) {
+            if (!floatingMenuPanel.contains(e.target) && e.target !== floatingMenuBtn) {
+                floatingMenuPanel.style.display = 'none';
+            }
+        }
+    });
     
     window.addEventListener('scroll', () => {
         if (scrollTimeout) clearTimeout(scrollTimeout);
@@ -224,21 +303,6 @@ function initFloatingMenuButton() {
     });
     window.addEventListener('resize', toggleFloatingMenuButton);
     toggleFloatingMenuButton();
-    
-    floatingMenuBtn.addEventListener('click', () => {
-        const menuToggle = document.getElementById('menu-toggle');
-        if (menuToggle) {
-            menuToggle.checked = !menuToggle.checked;
-        } else {
-            const menuBox = document.querySelector('.menu-box');
-            if (menuBox) {
-                const isVisible = menuBox.style.visibility === 'visible';
-                menuBox.style.visibility = isVisible ? 'hidden' : 'visible';
-                menuBox.style.opacity = isVisible ? '0' : '1';
-                menuBox.style.transform = isVisible ? 'translateY(-10px)' : 'translateY(0)';
-            }
-        }
-    });
 }
 
 // Инициализация всех компонентов
