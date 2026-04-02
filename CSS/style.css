@@ -1211,18 +1211,31 @@ body.dark-mode .culture-tip {
     display: none;
 }
 
-/* Стили для плавающей панели меню (светлая/тёмная тема) */
+/* Плавающая панель меню — светлая тема */
 #floating-menu-panel {
     background-color: rgba(255, 255, 255, 0.95);
-    border: 1px solid var(--border-light, #efebe5);
+    border: 1px solid #efebe5;
 }
 #floating-menu-panel a {
-    color: var(--text-primary, #1a1a1a);
+    color: #1a1a1a;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: background 0.2s;
 }
+#floating-menu-panel a:hover {
+    background-color: rgba(176, 62, 62, 0.1);
+}
+
+/* Тёмная тема для плавающей панели */
 body.dark-mode #floating-menu-panel {
     background-color: rgba(30, 30, 30, 0.95);
     border-color: #444;
 }
 body.dark-mode #floating-menu-panel a {
     color: #e0e0e0;
+}
+body.dark-mode #floating-menu-panel a:hover {
+    background-color: rgba(176, 62, 62, 0.3);
 }
