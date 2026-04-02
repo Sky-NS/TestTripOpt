@@ -167,8 +167,7 @@ function initThemeToggle() {
         themeBtn.innerHTML = isDark ? '☀️' : '🌙';
     });
 }
-
-// ===== ПЛАВАЮЩАЯ КНОПКА БУРГЕР-МЕНЮ (только для мобильных, появляется при прокрутке) =====
+// ===== ПЛАВАЮЩАЯ КНОПКА БУРГЕР-МЕНЮ (появляется при прокрутке > 200px на любых устройствах) =====
 let floatingMenuBtn = null;
 let scrollTimeout = null;
 
@@ -211,7 +210,8 @@ function initFloatingMenuButton() {
     document.body.appendChild(floatingMenuBtn);
     
     function toggleFloatingMenuButton() {
-        if (window.innerWidth <= 768 && window.scrollY > 200) {
+        // Убираем проверку ширины экрана — кнопка появляется при прокрутке > 200px на любом устройстве
+        if (window.scrollY > 200) {
             floatingMenuBtn.style.display = 'flex';
         } else {
             floatingMenuBtn.style.display = 'none';
