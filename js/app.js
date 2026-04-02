@@ -113,11 +113,10 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ===== ПЕРЕКЛЮЧЕНИЕ ТЁМНОЙ/СВЕТЛОЙ ТЕМЫ (ПОЛУПРОЗРАЧНАЯ КНОПКА) =====
+// ===== ПЕРЕКЛЮЧЕНИЕ ТЁМНОЙ/СВЕТЛОЙ ТЕМЫ =====
 let themeBtn = null;
 
 function initThemeToggle() {
-    // Создаём плавающую кнопку с полупрозрачным фоном
     themeBtn = document.createElement('button');
     themeBtn.id = 'theme-toggle';
     themeBtn.setAttribute('aria-label', 'Переключить тему');
@@ -142,7 +141,6 @@ function initThemeToggle() {
         justify-content: center;
     `;
     
-    // При наведении делаем непрозрачной
     themeBtn.onmouseenter = () => {
         themeBtn.style.backgroundColor = 'rgba(176, 62, 62, 1)';
         themeBtn.style.transform = 'scale(1.05)';
@@ -154,7 +152,6 @@ function initThemeToggle() {
     
     document.body.appendChild(themeBtn);
 
-    // Загрузка сохранённой темы
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
@@ -163,7 +160,6 @@ function initThemeToggle() {
         themeBtn.innerHTML = '🌙';
     }
 
-    // Обработчик клика
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
@@ -172,11 +168,85 @@ function initThemeToggle() {
     });
 }
 
-// Инициализация всех компонентов при загрузке страницы
+// ===== ПЛАВАЮЩАЯ КНОПКА БУРГЕР-МЕНЮ (только для мобильных, появляется при прокрутке) =====
+let floatingMenuBtn = null;
+let scrollTimeout = null;
+
+function initFloatingMenuButton() {
+    floatingMenuBtn = document.createElement('button');
+    floatingMenuBtn.id = 'floating-menu-btn';
+    floatingMenuBtn.setAttribute('aria-label', 'Меню');
+    floatingMenuBtn.innerHTML = '☰';
+    floatingMenuBtn.style.cssText = `
+        position: fixed;
+        bottom: 140px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: rgba(176, 62, 62, 0.7);
+        backdrop-filter: blur(4px);
+        color: white;
+        border: none;
+        font-size: 1.8rem;
+        font-weight: normal;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: all 0.2s;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    `;
+    
+    floatingMenuBtn.onmouseenter = () => {
+        floatingMenuBtn.style.backgroundColor = 'rgba(176, 62, 62, 1)';
+        floatingMenuBtn.style.transform = 'scale(1.05)';
+    };
+    floatingMenuBtn.onmouseleave = () => {
+        floatingMenuBtn.style.backgroundColor = 'rgba(176, 62, 62, 0.7)';
+        floatingMenuBtn.style.transform = 'scale(1)';
+    };
+    
+    document.body.appendChild(floatingMenuBtn);
+    
+    function toggleFloatingMenuButton() {
+        if (window.innerWidth <= 768 && window.scrollY > 200) {
+            floatingMenuBtn.style.display = 'flex';
+        } else {
+            floatingMenuBtn.style.display = 'none';
+        }
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(toggleFloatingMenuButton, 50);
+    });
+    window.addEventListener('resize', toggleFloatingMenuButton);
+    toggleFloatingMenuButton();
+    
+    floatingMenuBtn.addEventListener('click', () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.checked = !menuToggle.checked;
+        } else {
+            const menuBox = document.querySelector('.menu-box');
+            if (menuBox) {
+                const isVisible = menuBox.style.visibility === 'visible';
+                menuBox.style.visibility = isVisible ? 'hidden' : 'visible';
+                menuBox.style.opacity = isVisible ? '0' : '1';
+                menuBox.style.transform = isVisible ? 'translateY(-10px)' : 'translateY(0)';
+            }
+        }
+    });
+}
+
+// Инициализация всех компонентов
 document.addEventListener('DOMContentLoaded', () => {
     initBackToTop();
     saveRatesToLocalStorage();
     initCollapsibleBlocks();
     addRateLoadingIndicator();
     initThemeToggle();
+    initFloatingMenuButton();
 });
