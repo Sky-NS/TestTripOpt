@@ -1239,3 +1239,99 @@ body.dark-mode #floating-menu-panel a {
 body.dark-mode #floating-menu-panel a:hover {
     background-color: rgba(176, 62, 62, 0.3);
 }
+/* ===== ПЕРЕОПРЕДЕЛЕНИЕ ЦВЕТОВ ДЛЯ ТЁМНОЙ ТЕМЫ (исправление жёстких фонов) ===== */
+body.dark-mode .day-highlight,
+body.dark-mode .evening-plan,
+body.dark-mode .morning-plan,
+body.dark-mode .attraction-card,
+body.dark-mode .route-card,
+body.dark-mode .hotel-info,
+body.dark-mode .transport-note,
+body.dark-mode .bus-schedule,
+body.dark-mode .locker-info,
+body.dark-mode .scenario-card,
+body.dark-mode .scenario-a,
+body.dark-mode .scenario-b,
+body.dark-mode .tip,
+body.dark-mode .weather-note,
+body.dark-mode .price-info,
+body.dark-mode .info-box,
+body.dark-mode .contact-card,
+body.dark-mode .visa-card,
+body.dark-mode .phrase-card,
+body.dark-mode .app-card,
+body.dark-mode .timer-container,
+body.dark-mode .progress-container,
+body.dark-mode .flight-badge,
+body.dark-mode .city-card,
+body.dark-mode .hotel-card,
+body.dark-mode .currency-control,
+body.dark-mode .currency-note,
+body.dark-mode .geolocation-note,
+body.dark-mode .checklist-block {
+    background-color: var(--card-hover) !important;
+    border-color: var(--border-light) !important;
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .attraction-card img,
+body.dark-mode .map-container iframe {
+    opacity: 0.9;
+}
+
+body.dark-mode .total-day,
+body.dark-mode .grand-total {
+    background-color: var(--accent-teal) !important;
+}
+
+body.dark-mode .city-badge,
+body.dark-mode .attraction-badge,
+body.dark-mode .badge {
+    background-color: var(--accent-red) !important;
+}
+
+body.dark-mode .route-detail {
+    border-bottom-color: var(--border-light) !important;
+}
+
+body.dark-mode .scenario-card {
+    background-color: var(--card-hover) !important;
+    border-left-color: var(--accent-red) !important;
+}
+
+body.dark-mode .scenario-a {
+    background-color: #1a2a3a !important;
+    border-left-color: #5c9eff !important;
+}
+
+body.dark-mode .scenario-b {
+    background-color: #1a2a1a !important;
+    border-left-color: #4aa393 !important;
+}
+
+/* Для элементов с inline-стилями (например, background-color="#fff0f0") используем !important */
+body.dark-mode div[style*="background-color: #fff0f0"],
+body.dark-mode div[style*="background-color: #fff9f5"],
+body.dark-mode div[style*="background-color: #f0f0f0"],
+body.dark-mode div[style*="background-color: #f9f7f4"],
+body.dark-mode div[style*="background-color: #e6f2f0"],
+body.dark-mode div[style*="background-color: #e6f2e6"],
+body.dark-mode div[style*="background-color: #e6f2ff"],
+body.dark-mode div[style*="background-color: #fff0e0"],
+body.dark-mode div[style*="background-color: #fff9e6"],
+body.dark-mode div[style*="background-color: #fef9e6"],
+body.dark-mode div[style*="background-color: #f5f2eb"],
+body.dark-mode div[style*="background-color: #f0f5fa"] {
+    background-color: var(--card-hover) !important;
+}
+
+/* Для таблиц в бюджетной странице */
+body.dark-mode .budget-table {
+    background-color: var(--bg-card) !important;
+}
+body.dark-mode .budget-table td {
+    border-bottom-color: var(--border-light) !important;
+}
+body.dark-mode .city-total {
+    background-color: var(--card-hover) !important;
+}
