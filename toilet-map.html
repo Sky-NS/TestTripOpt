@@ -27,12 +27,16 @@
             </ul>
         </div>
 
-        <h1>🚽 Карта туалетов в Японии</h1>
-        <p style="color: #4a4a4a; margin-bottom: 30px;">
-            Найдите ближайшие общественные туалеты через Google Карты или Yahoo! Карты. Также доступны мобильные приложения.
-        </p>
+        <!-- Центрированный заголовок -->
+        <div class="page-header">
+            <span class="header-icon">🚽</span>
+            <div>
+                <h1>Карта туалетов в Японии</h1>
+                <p class="header-subtitle">Найдите ближайшие общественные туалеты через Google Карты или Yahoo! Карты</p>
+            </div>
+        </div>
 
-        <div class="geolocation-note" id="maps">
+        <div class="geolocation-note">
             <strong>📍 Разрешите геолокацию:</strong> при нажатии на кнопку браузер запросит доступ к вашему местоположению. После подтверждения карта покажет туалеты рядом.
         </div>
 
@@ -49,8 +53,20 @@
             </a>
         </div>
 
-        <h2 id="apps" style="margin-top: 40px;">📱 Мобильные приложения</h2>
-        
+        <div class="coverage-note">
+            <strong>📍 Города вашего маршрута:</strong>
+            <div class="city-badge-list">
+                <span class="city-badge">✅ Осака</span>
+                <span class="city-badge">✅ Киото</span>
+                <span class="city-badge">✅ Токио</span>
+                <span class="city-badge">✅ Нара</span>
+                <span class="city-badge">✅ Камакура</span>
+                <span class="city-badge">✅ Фудзи</span>
+                <span class="city-badge yahoo">✅ Yahoo! Карты</span>
+            </div>
+        </div>
+
+        <h2>📱 Мобильные приложения</h2>
         <div class="app-grid">
             <div class="app-card">
                 <div class="app-icon">🚻</div>
@@ -99,11 +115,10 @@
             </div>
         </div>
 
-        <div class="info-box" id="guide">
+        <div class="info-box">
             <h3>ℹ️ Как пользоваться туалетами в Японии</h3>
-            
-            <h4 style="margin-top: 20px;">🚽 Японские унитазы (Washlet):</h4>
-            <ul style="color: #4a4a4a;">
+            <h4>🚽 Японские унитазы (Washlet):</h4>
+            <ul>
                 <li>Панель управления обычно сбоку или на стене</li>
                 <li>Кнопка с изображением «сидячего человека» — поднимает/опускает сиденье</li>
                 <li><strong>「おしり」</strong> (Oshiri) — для гигиены</li>
@@ -112,9 +127,8 @@
                 <li><strong>「流す」</strong> (Nagasu) — смыть</li>
                 <li>В некоторых местах бумагу нельзя смывать — выбрасывайте в урну рядом</li>
             </ul>
-            
-            <h4 style="margin-top: 20px;">📍 Где искать туалеты:</h4>
-            <ul style="color: #4a4a4a;">
+            <h4>📍 Где искать туалеты:</h4>
+            <ul>
                 <li>Крупные универмаги (всегда чистые и бесплатные)</li>
                 <li>Станции метро и JR (есть почти на всех)</li>
                 <li>Парки (обычно есть, но могут быть закрыты вечером)</li>
@@ -123,23 +137,14 @@
                 <li>Макдональдс и другие фастфуды (часто есть, но могут требовать заказ)</li>
             </ul>
         </div>
-       
+
         <div class="footer">
             <p>Карта туалетов для путешественников в Японии</p>
-            <p style="font-size: 0.9rem;">Google Карты · Yahoo! Карты · мобильные приложения</p>
+            <p>Google Карты · Yahoo! Карты · мобильные приложения</p>
         </div>
     </div>
+
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
-    <script>
-        document.querySelectorAll('.checklist-item').forEach(cb => {
-            const key = `checklist_toilet_${cb.parentElement.textContent.trim()}`;
-            const saved = localStorage.getItem(key);
-            if (saved === 'true') cb.checked = true;
-            cb.addEventListener('change', () => {
-                localStorage.setItem(key, cb.checked);
-            });
-        });
-    </script>
 </body>
 </html>
