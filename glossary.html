@@ -27,15 +27,16 @@
             </ul>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-            <span style="font-size: 4rem;">📖</span>
+        <!-- Центрированный заголовок -->
+        <div class="page-header">
+            <span class="header-icon">📖</span>
             <div>
-                <h1 style="text-align: left; margin: 0; font-size: 3rem;">Глоссарий</h1>
-                <p style="color: #6b5a4a; margin: 5px 0 0; font-size: 1.2rem;">Полезные фразы, этикет и культурные заметки</p>
+                <h1>Глоссарий</h1>
+                <p class="header-subtitle">Полезные фразы, этикет и культурные заметки</p>
             </div>
         </div>
 
-        <!-- ЯПОНСКИЙ РАЗДЕЛ (расширенный) -->
+        <!-- ЯПОНСКИЙ РАЗДЕЛ -->
         <div class="glossary-section" id="japanese">
             <h2>🇯🇵 Японский язык · 日本語</h2>
             <div class="phrase-card">
@@ -77,18 +78,18 @@
                         <button class="copy-btn" data-text="すみません">📋 Копировать</button>
                     </div>
                     <div class="phrase-item">
-                        <div class="phrase-ru">До свидания (в груброй форме, похоже на наше "прощайте и надеюсь больше никогда не увидимся" или "Идите на хуй")</div>
+                        <div class="phrase-ru">До свидания (в грубой форме "Идите на хуй")</div>
                         <div class="phrase-original">さようなら</div>
                         <div class="phrase-translit">Sayōnara</div>
                         <div class="phrase-rus-translit">[саё:нара]</div>
                         <button class="copy-btn" data-text="さようなら">📋 Копировать</button>
                     </div>
                     <div class="phrase-item">
-                        <div class="phrase-ru">Досвидания (вежливое)</div>
+                        <div class="phrase-ru">До свидания (вежливое)</div>
                         <div class="phrase-original">bye bye</div>
                         <div class="phrase-translit">[baɪ baɪ]</div>
-                        <div class="phrase-rus-translit">[бай:бай]</div>
-                        <button class="copy-btn" data-text="さようなら">📋 Копировать</button>
+                        <div class="phrase-rus-translit">[бай бай]</div>
+                        <button class="copy-btn" data-text="bye bye">📋 Копировать</button>
                     </div>
                 </div>
             </div>
@@ -196,7 +197,7 @@
             </div>
         </div>
 
-        <!-- КИТАЙСКИЙ РАЗДЕЛ (кратко, для транзита) -->
+        <!-- КИТАЙСКИЙ РАЗДЕЛ -->
         <div class="glossary-section" id="chinese">
             <h2>🇨🇳 Китайский язык · 中文 (для транзита в Шанхае)</h2>
             <div class="phrase-card">
@@ -232,15 +233,14 @@
                     </div>
                 </div>
             </div>
-            <div class="culture-tip" style="background-color:#f0f0f0;">
+            <div class="culture-tip">
                 <strong>📝 Примечание:</strong> В Шанхае мы будем всего 17 часов, в основном в аутлете и такси. Для общения достаточно английского, а для экстренных случаев лучше использовать переводчик или показать фразу на экране.
             </div>
         </div>
 
-        <!-- ЭТИКЕТ И КУЛЬТУРА ЯПОНИИ (расширенный) -->
+        <!-- ЭТИКЕТ И КУЛЬТУРА ЯПОНИИ -->
         <div class="glossary-section" id="etiquette">
             <h2>🎌 Этикет и культура Японии</h2>
-            
             <div class="culture-tip">
                 <strong>🙇 Поклоны и приветствия</strong>
                 <ul>
@@ -322,14 +322,13 @@
 
         <div class="footer">
             <p>Глоссарий поможет вам чувствовать себя увереннее в Японии и Китае</p>
-            <p style="font-size: 0.9rem;">Нажмите на кнопку "Копировать", чтобы вставить фразу в переводчик или показать местным</p>
+            <p>Нажмите на кнопку "Копировать", чтобы вставить фразу в переводчик или показать местным</p>
         </div>
     </div>
 
     <script src="js/currency.js"></script>
     <script src="js/app.js"></script>
     <script>
-        // Копирование текста
         document.querySelectorAll('.copy-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const text = btn.getAttribute('data-text');
