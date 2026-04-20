@@ -1,0 +1,58 @@
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Градиент -->
+  <defs>
+    <linearGradient id="sunset" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff7e5f"/>
+      <stop offset="100%" stop-color="#feb47b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Круг -->
+  <circle cx="100" cy="100" r="80"
+    fill="none"
+    stroke="white"
+    stroke-width="6"
+    stroke-dasharray="502"
+    stroke-dashoffset="502">
+    <animate attributeName="stroke-dashoffset"
+      from="502" to="0"
+      dur="1.2s"
+      fill="freeze" />
+  </circle>
+
+  <!-- Дуга -->
+  <path d="M40 120 Q100 40 160 100"
+    fill="none"
+    stroke="white"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-dasharray="200"
+    stroke-dashoffset="200">
+    <animate attributeName="stroke-dashoffset"
+      from="200" to="0"
+      dur="1.5s"
+      begin="0.5s"
+      fill="freeze" />
+  </path>
+
+  <!-- Самолёт -->
+  <g>
+    <text x="0" y="0" font-size="14" fill="white">✈</text>
+    <animateMotion dur="2s" fill="freeze">
+      <mpath href="#flightPath"/>
+    </animateMotion>
+  </g>
+
+  <!-- Путь для самолёта -->
+  <path id="flightPath" d="M40 120 Q100 40 160 100" fill="none"/>
+
+  <!-- Точка -->
+  <circle cx="100" cy="165" r="4" fill="white">
+    <animate attributeName="r"
+      values="4;6;4"
+      dur="1s"
+      repeatCount="indefinite"/>
+  </circle>
+
+</svg>
