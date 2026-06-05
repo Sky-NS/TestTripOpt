@@ -138,16 +138,55 @@ body{
 
 /* ===== TIMELINE PLANE ===== */
 .timeline-plane-icon{
-  position:absolute;left:-32px;top:20px;width:32px;height:32px;
-  background:rgba(181,126,53,.85);border-radius:50%;
+  position:absolute;
+  width:32px;height:32px;
+  background:rgba(181,126,53,.9);border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 2px 12px rgba(0,0,0,.2);will-change:top;
-  transition:top 0.08s linear;z-index:20;pointer-events:none;
-  backdrop-filter:blur(2px);border:1px solid rgba(255,245,220,.6);opacity:0;
+  box-shadow:0 2px 16px rgba(181,126,53,.45);
+  will-change:transform;
+  z-index:20;pointer-events:none;
+  backdrop-filter:blur(2px);border:1px solid rgba(255,245,220,.7);
+  opacity:0;transition:opacity 0.4s;
+  /* positioned via JS transform */
+  left:0; top:0;
 }
 .timeline-plane-icon.active{opacity:1;}
-.timeline-plane-icon::after{content:"✈";font-size:20px;transform:rotate(45deg);display:inline-block;}
-.timeline-container{position:relative;margin:0;padding-left:28px;}
+.timeline-plane-icon .plane-emoji{
+  font-size:18px;display:inline-block;
+  transition:transform 0.15s;
+}
+
+/* Path SVG overlay */
+.tl-path-svg{
+  position:absolute;
+  left:0;top:0;
+  width:100%;height:100%;
+  pointer-events:none;
+  z-index:1;
+  overflow:visible;
+}
+/* Remaining grey dashes — the "yet to fly" route */
+.tl-path-ghost{
+  fill:none;
+  stroke:var(--border);
+  stroke-width:2;
+  stroke-dasharray:5 5;
+  stroke-linecap:round;
+  opacity:0.5;
+}
+/* Trail: gold portion — already flown */
+.tl-path-trail{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:2;
+  stroke-dasharray:5 5;
+  stroke-linecap:round;
+  opacity:0.9;
+  stroke-dashoffset:0;
+  filter:drop-shadow(0 0 3px rgba(181,126,53,.45));
+}
+
+.timeline-container{position:relative;margin:0;padding-left:38px;overflow:visible;}
 .tl-list{position:relative;z-index:2;list-style:none;}
 .tl-item{
   position:relative;display:flex;align-items:baseline;
@@ -155,6 +194,31 @@ body{
   transition:background 0.25s;
 }
 .tl-item.highlight-effect{background:radial-gradient(ellipse at 85% 50%,rgba(181,126,53,.12),transparent);border-radius:20px;}
+
+/* Stop dots on the path */
+.tl-stop-dot{
+  position:absolute;left:-30px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--border);border:2px solid var(--card);
+  top:50%;transform:translateY(-50%);
+  z-index:3;transition:background 0.35s,box-shadow 0.35s,transform 0.2s;
+  box-shadow:0 1px 4px rgba(0,0,0,.1);
+}
+.tl-stop-dot.passed{
+  background:var(--gold);
+  box-shadow:0 0 8px rgba(181,126,53,.55);
+  transform:translateY(-50%) scale(1.05);
+}
+.tl-stop-dot.active-dot{
+  background:var(--gold2);
+  transform:translateY(-50%) scale(1.25);
+  box-shadow:0 0 0 4px rgba(181,126,53,.2),0 0 12px rgba(181,126,53,.5);
+  animation:dotPulse 1.2s ease-in-out infinite;
+}
+@keyframes dotPulse{
+  0%,100%{box-shadow:0 0 0 3px rgba(181,126,53,.2),0 0 8px rgba(181,126,53,.35);}
+  50%{box-shadow:0 0 0 7px rgba(181,126,53,.1),0 0 16px rgba(181,126,53,.5);}
+}
 
 /* ===== RINGS ===== */
 .rings-wrap{
@@ -579,15 +643,18 @@ body{
         <div class="card-title" style="font-size:28px;margin:0;">ТАЙМИНГ</div>
         <span style="font-size:22px;color:var(--gold2);">✈</span>
       </div>
-      <div class="timeline-container">
-        <div id="timelinePlane" class="timeline-plane-icon"></div>
+      <div class="timeline-container" id="tlContainer">
+        <!-- SVG path drawn behind the list -->
+        <svg class="tl-path-svg" id="tlPathSvg"><path class="tl-path-ghost" id="tlPathGhost"/><path class="tl-path-trail" id="tlPathTrail"/></svg>
+        <!-- Plane icon, positioned by JS -->
+        <div id="timelinePlane" class="timeline-plane-icon"><span class="plane-emoji">✈</span></div>
         <ul class="tl-list">
-          <li class="tl-item"><span class="tl-lbl">СБОР ГОСТЕЙ / GUEST ARRIVAL</span><span class="tl-time">12:00 <span class="tl-arr">→</span></span></li>
-          <li class="tl-item"><span class="tl-lbl">ЦЕРЕМОНИЯ / CEREMONY</span><span class="tl-time">13:00 <span class="tl-arr">→</span></span></li>
-          <li class="tl-item"><span class="tl-lbl">БАНКЕТ / BANQUET</span><span class="tl-time">15:00 <span class="tl-arr">→</span></span></li>
-          <li class="tl-item"><span class="tl-lbl">ТАНЦЫ / DANCES</span><span class="tl-time">18:00 <span class="tl-arr">→</span></span></li>
-          <li class="tl-item"><span class="tl-lbl">СВАДЕБНЫЙ ТОРТ / CAKE</span><span class="tl-time">21:00 <span class="tl-arr">→</span></span></li>
-          <li class="tl-item"><span class="tl-lbl">ЗАВЕРШЕНИЕ / END</span><span class="tl-time">23:00</span></li>
+          <li class="tl-item"><span class="tl-stop-dot" id="dot0"></span><span class="tl-lbl">СБОР ГОСТЕЙ / GUEST ARRIVAL</span><span class="tl-time">12:00 <span class="tl-arr">→</span></span></li>
+          <li class="tl-item"><span class="tl-stop-dot" id="dot1"></span><span class="tl-lbl">ЦЕРЕМОНИЯ / CEREMONY</span><span class="tl-time">13:00 <span class="tl-arr">→</span></span></li>
+          <li class="tl-item"><span class="tl-stop-dot" id="dot2"></span><span class="tl-lbl">БАНКЕТ / BANQUET</span><span class="tl-time">15:00 <span class="tl-arr">→</span></span></li>
+          <li class="tl-item"><span class="tl-stop-dot" id="dot3"></span><span class="tl-lbl">ТАНЦЫ / DANCES</span><span class="tl-time">18:00 <span class="tl-arr">→</span></span></li>
+          <li class="tl-item"><span class="tl-stop-dot" id="dot4"></span><span class="tl-lbl">СВАДЕБНЫЙ ТОРТ / CAKE</span><span class="tl-time">21:00 <span class="tl-arr">→</span></span></li>
+          <li class="tl-item"><span class="tl-stop-dot" id="dot5"></span><span class="tl-lbl">ЗАВЕРШЕНИЕ / END</span><span class="tl-time">23:00</span></li>
         </ul>
       </div>
     </div>
@@ -787,67 +854,175 @@ const obsAppear=new IntersectionObserver(entries=>{
 },{threshold:0.15,rootMargin:'0px 0px -30px 0px'});
 animated.forEach(el=>obsAppear.observe(el));
 
-/* ===== TIMELINE PLANE ===== */
-const tlCont=document.querySelector('.timeline-container');
-const tlItems=document.querySelectorAll('.tl-item');
-const planeEl=document.getElementById('timelinePlane');
-let planeActive=false;
-function updatePlane(){
-  if(!planeActive||!tlCont||!tlItems.length)return;
-  const cRect=tlCont.getBoundingClientRect();
-  const vH=window.innerHeight;
-  let first=-1,last=-1;
-  const rects=[];
-  tlItems.forEach((item,i)=>{
-    const r=item.getBoundingClientRect();rects.push(r);
-    if(r.bottom>0&&r.top<vH){if(first===-1)first=i;last=i;}
-  });
-  if(first===-1)return;
-  let targetTop;
-  if(first===last){
-    const r=rects[first];
-    targetTop=r.top-cRect.top+(r.height/2)-16;
-    tlItems.forEach(it=>it.classList.remove('highlight-effect'));
-    tlItems[first].classList.add('highlight-effect');
-  } else {
-    const fc=rects[first].top+rects[first].height/2;
-    const lc=rects[last].top+rects[last].height/2;
-    let t=Math.min(Math.max((vH/2-fc)/(lc-fc),0),1);
-    const idx=first+t*(last-first);
-    const lo=Math.floor(idx),hi=Math.ceil(idx);
-    if(lo===hi){targetTop=rects[lo].top-cRect.top+(rects[lo].height/2)-16;}
-    else{
-      const lc2=rects[lo].top+rects[lo].height/2;
-      const uc2=rects[hi].top+rects[hi].height/2;
-      targetTop=lc2+(idx-lo)*(uc2-lc2)-cRect.top-16;
-    }
-    const nearest=Math.round(idx);
-    tlItems.forEach(it=>it.classList.remove('highlight-effect'));
-    tlItems[nearest].classList.add('highlight-effect');
-  }
-  planeEl.style.top=Math.min(Math.max(targetTop,8),cRect.height-36)+'px';
-}
-const tlObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting&&!planeActive){
-      planeActive=true;planeEl.classList.add('active');updatePlane();
-      window.addEventListener('scroll',()=>requestAnimationFrame(updatePlane),{passive:true});
-      window.addEventListener('resize',updatePlane,{passive:true});
-    } else if(!e.isIntersecting&&planeActive){
-      planeActive=false;planeEl.classList.remove('active');
-      tlItems.forEach(it=>it.classList.remove('highlight-effect'));
-    }
-  });
-},{threshold:0.1});
-if(tlCont)tlObs.observe(tlCont);
+/* ===== TIMELINE PATH PLANE ===== */
+(function(){
+  const container = document.getElementById('tlContainer');
+  const planeEl   = document.getElementById('timelinePlane');
+  const planeIcon = planeEl.querySelector('.plane-emoji');
+  const tlItems   = document.querySelectorAll('.tl-item');
+  const dots      = [0,1,2,3,4,5].map(i=>document.getElementById('dot'+i));
+  const pathGhost = document.getElementById('tlPathGhost');
+  const pathTrail = document.getElementById('tlPathTrail');
+  const svgEl     = document.getElementById('tlPathSvg');
+  let planeActive = false;
+  let pathPoints  = []; // [{x,y}] stop centres in container coords
+  let svgPath     = null; // SVGPathElement for total length
+  let totalLen    = 0;
 
-setTimeout(()=>{
-  animated.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-50)el.classList.add('visible');});
-  if(tlCont&&tlCont.getBoundingClientRect().top<window.innerHeight){
-    planeActive=true;planeEl.classList.add('active');updatePlane();
-    window.addEventListener('scroll',()=>requestAnimationFrame(updatePlane),{passive:true});
+  /* Build a serpentine SVG path through all stop centres */
+  function buildPath() {
+    if (!container) return;
+    const cRect = container.getBoundingClientRect();
+    pathPoints = [];
+    dots.forEach(dot => {
+      const r = dot.getBoundingClientRect();
+      pathPoints.push({
+        x: r.left - cRect.left + r.width / 2,
+        y: r.top  - cRect.top  + r.height / 2
+      });
+    });
+
+    // Build a wavy serpentine path: each segment curves left or right
+    // Control points offset horizontally to create S-wave feel
+    const amp = 18; // horizontal wave amplitude
+    let d = `M ${pathPoints[0].x} ${pathPoints[0].y}`;
+    for (let i = 1; i < pathPoints.length; i++) {
+      const prev = pathPoints[i-1];
+      const cur  = pathPoints[i];
+      const midY = (prev.y + cur.y) / 2;
+      // Alternate direction: odd segments curve right, even curve left
+      const dir = (i % 2 === 1) ? 1 : -1;
+      // Control points: bow out horizontally in the middle
+      const cp1x = prev.x + dir * amp;
+      const cp1y = prev.y + (cur.y - prev.y) * 0.3;
+      const cp2x = cur.x  + dir * amp;
+      const cp2y = prev.y + (cur.y - prev.y) * 0.7;
+      d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${cur.x} ${cur.y}`;
+    }
+
+    pathGhost.setAttribute('d', d);
+    pathTrail.setAttribute('d', d);
+
+    // Hidden measurement path
+    if (!svgPath) {
+      svgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+      svgPath.setAttribute('d', d);
+      svgEl.appendChild(svgPath);
+      svgPath.style.visibility = 'hidden';
+      svgPath.style.fill = 'none';
+    } else {
+      svgPath.setAttribute('d', d);
+    }
+    totalLen = svgPath.getTotalLength();
+
+    // Ghost: full dashed line visible initially, trail starts empty
+    pathGhost.style.strokeDasharray = '5 5';
+    pathGhost.style.strokeDashoffset = '0';
+    // Trail starts hidden (0 solid, rest gap)
+    pathTrail.style.strokeDasharray = `0 ${totalLen + 10}`;
+    pathTrail.style.strokeDashoffset = '0';
   }
-},120);
+
+  /* Given progress 0..1, move plane along path and update trail */
+  function movePlane(progress) {
+    if (!svgPath || totalLen === 0) return;
+    const dist = progress * totalLen;
+
+    // Ghost: show remaining portion (from dist to end)
+    // Use strokeDasharray solid segment + gap trick:
+    // ghost shows only the portion ahead of the plane
+    pathGhost.style.strokeDasharray = `0 ${dist} ${totalLen}`;
+    pathGhost.style.strokeDashoffset = '0';
+
+    // Trail: show flown portion (0 to dist) using solid then huge gap
+    // We use stroke-dasharray "dist totalLen" so only first `dist` px show
+    pathTrail.style.strokeDasharray = `${dist} ${totalLen + 10}`;
+    pathTrail.style.strokeDashoffset = '0';
+
+    // Plane position
+    const pt = svgPath.getPointAtLength(dist);
+
+    // Angle: look ahead slightly for rotation
+    const lookAhead = Math.min(dist + 8, totalLen);
+    const lookBehind = Math.max(dist - 2, 0);
+    const pt2 = svgPath.getPointAtLength(lookAhead);
+    const ptB = svgPath.getPointAtLength(lookBehind);
+    const angle = Math.atan2(pt2.y - ptB.y, pt2.x - ptB.x) * 180 / Math.PI;
+
+    planeEl.style.transform = `translate(${pt.x - 16}px, ${pt.y - 16}px)`;
+    planeIcon.style.transform = `rotate(${angle - 45}deg)`;
+
+    // Update stop dots
+    dots.forEach((dot, i) => {
+      const stopProgress = i / (dots.length - 1);
+      dot.classList.remove('passed','active-dot');
+      if (progress >= stopProgress + 0.01) {
+        dot.classList.add('passed');
+      } else if (Math.abs(progress - stopProgress) < 0.08) {
+        dot.classList.add('active-dot');
+      }
+    });
+
+    // Highlight nearest tl-item
+    const nearestIdx = Math.round(progress * (tlItems.length - 1));
+    tlItems.forEach((it,i) => {
+      it.classList.toggle('highlight-effect', i === nearestIdx);
+    });
+  }
+
+  /* Compute scroll-based progress */
+  function updateFromScroll() {
+    if (!planeActive || !container) return;
+    const cRect = container.getBoundingClientRect();
+    const vH    = window.innerHeight;
+
+    // progress: 0 when top of container hits bottom of viewport,
+    //           1 when bottom of container hits top of viewport
+    const start = cRect.top;
+    const end   = cRect.bottom - vH;
+    // We want 0 when container.top = vH*0.75, 1 when container.bottom = vH*0.25
+    const triggerTop = vH * 0.75;
+    const triggerBot = vH * 0.25;
+    const total = (cRect.height) + (triggerTop - triggerBot);
+    const elapsed = triggerTop - cRect.top;
+    const progress = Math.min(Math.max(elapsed / total, 0), 1);
+
+    movePlane(progress);
+  }
+
+  /* IntersectionObserver to activate */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !planeActive) {
+        planeActive = true;
+        planeEl.classList.add('active');
+        buildPath();
+        updateFromScroll();
+        window.addEventListener('scroll',  () => requestAnimationFrame(updateFromScroll), {passive:true});
+        window.addEventListener('resize',  () => { buildPath(); updateFromScroll(); }, {passive:true});
+      } else if (!e.isIntersecting && planeActive) {
+        planeActive = false;
+        planeEl.classList.remove('active');
+        tlItems.forEach(it=>it.classList.remove('highlight-effect'));
+        dots.forEach(d=>d.classList.remove('passed','active-dot'));
+      }
+    });
+  }, {threshold: 0.05});
+
+  if (container) obs.observe(container);
+
+  // Also trigger if already in view on load
+  setTimeout(() => {
+    if (container && container.getBoundingClientRect().top < window.innerHeight) {
+      planeActive = true;
+      planeEl.classList.add('active');
+      buildPath();
+      updateFromScroll();
+      window.addEventListener('scroll', () => requestAnimationFrame(updateFromScroll), {passive:true});
+      window.addEventListener('resize', () => { buildPath(); updateFromScroll(); }, {passive:true});
+    }
+  }, 200);
+})();
 </script>
 </body>
 </html>
