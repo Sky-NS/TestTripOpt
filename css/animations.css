@@ -1,0 +1,201 @@
+/* ============================================================
+   css/animations.css — Анимации и ключевые кадры
+   ANOKHIN AIRWAYS · Москва → Forever
+   ============================================================ */
+
+/* ---------- Облака ---------- */
+@keyframes cloudDrift1 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(120px); }
+}
+
+@keyframes cloudDrift2 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100px); }
+}
+
+@keyframes cloudDrift3 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(80px); }
+}
+
+/* ---------- Стрелка в Hero ---------- */
+@keyframes arrowPulse {
+    0%, 100% { opacity: 0.5; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(8px); }
+}
+
+/* ---------- Точка скролла ---------- */
+@keyframes scrollDot {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(12px); opacity: 0.3; }
+}
+
+/* ---------- Маркер на карте ---------- */
+@keyframes markerBounce {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-8px); }
+}
+
+/* ---------- Пульсация для интерактивных элементов ---------- */
+@keyframes subtlePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(215, 178, 109, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(215, 178, 109, 0); }
+}
+
+/* ---------- Появление секций ---------- */
+.reveal-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reveal-section--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Появление слева ---------- */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reveal-left--visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ---------- Появление справа ---------- */
+.reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reveal-right--visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ---------- Эффект маски для заголовков ---------- */
+.mask-reveal {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: clip-path 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.mask-reveal--visible {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* ---------- Посадочный талон: эффект при наведении ---------- */
+.boarding-pass {
+    transition: transform var(--transition-luxury), box-shadow var(--transition-luxury);
+}
+
+.boarding-pass:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 16px 48px rgba(0, 0, 0, 0.06);
+}
+
+/* ---------- Счётчик: эффект перелистывания ---------- */
+.countdown__flip {
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--transition-medium);
+}
+
+.countdown__flip:hover {
+    border-color: rgba(215, 178, 109, 0.5);
+}
+
+/* ---------- Полоса загрузки формы ---------- */
+.rsvp__submit--loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.rsvp__submit--loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ---------- Анимация для модального окна ---------- */
+.modal--open .modal__content {
+    animation: modalIn 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ---------- Параллакс-слои ---------- */
+.parallax-slow {
+    will-change: transform;
+}
+
+.parallax-medium {
+    will-change: transform;
+}
+
+/* ---------- Анимация для точек таймлайна ---------- */
+.timeline__item .timeline__dot {
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.timeline__item:hover .timeline__dot {
+    transform: scale(1.4);
+    box-shadow: 0 0 0 10px rgba(215, 178, 109, 0.15);
+}
+
+/* ---------- Анимация для карточек дресс-кода ---------- */
+.dress-code__swatch {
+    transition: transform var(--transition-medium);
+}
+
+.dress-code__swatch:hover {
+    transform: translateY(-6px);
+}
+
+/* ---------- Плавный hover для элементов багажа ---------- */
+.baggage__item {
+    transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.baggage__item:hover {
+    transform: translateX(4px);
+}
+
+.baggage__item--prohibited:hover {
+    transform: translateX(0);
+}
+
+/* ---------- Доступность: reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
